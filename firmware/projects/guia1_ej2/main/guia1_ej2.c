@@ -19,7 +19,7 @@
  * |:----------:|:-----------------------------------------------|
  * | 12/09/2023 | Document creation		                         |
  *
- * @author Albano Peñalva (albano.penalva@uner.edu.ar)
+ * @author Facundo Main (facundo.main@ingenieria.uner.edu.ar)
  *
  */
 
@@ -52,7 +52,8 @@ void app_main(void){
     			LedToggle(LED_2);
     		break;
     	}
-	    LedToggle(LED_3);
+	    if (SWITCH_1 && SWITCH_2) 
+		LedToggle(LED_3);
 		vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
 	}
 }
