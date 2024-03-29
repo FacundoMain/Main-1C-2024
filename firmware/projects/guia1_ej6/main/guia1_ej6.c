@@ -1,17 +1,22 @@
-/*! @mainpage Template
+/*! @mainpage guia1_ej6
  *
  * @section genDesc General Description
  *
- * This section describes how the program works.
+ * Ejercicio 6 de guia proyecto 1, el mismo consiste en mostrar un numero de 3 digitos
+ * por una pantalla LCD.
  *
- * <a href="https://drive.google.com/...">Operation Example</a>
  *
  * @section hardConn Hardware Connection
  *
  * |    Peripheral  |   ESP32   	|
  * |:--------------:|:--------------|
- * | 	PIN_X	 	| 	GPIO_X		|
- *
+ * | 	PIN_X	 	| 	GPIO_9		|
+ * | 	PIN_X	 	| 	GPIO_18		|
+ * | 	PIN_X	 	| 	GPIO_19		|
+ * | 	PIN_X	 	| 	GPIO_20		|
+ * | 	PIN_X	 	| 	GPIO_21		|
+ * | 	PIN_X	 	| 	GPIO_22		|
+ *| 	PIN_X	 	| 	GPIO_23		|
  *
  * @section changelog Changelog
  *
@@ -30,6 +35,10 @@
 /*==================[macros and definitions]=================================*/
 
 /*==================[internal data definition]===============================*/
+
+/** @struct gpioConf_t
+ * @brief Estructura que guarda la informacion de un GPIO, pin asociado y direccion.
+*/
 typedef struct
 {
 	gpio_t pin;			/*!< GPIO pin number */
@@ -37,6 +46,13 @@ typedef struct
 } gpioConf_t;
 
 /*==================[internal functions declaration]=========================*/
+
+/** @fn void muestradigito (uint8_t digito, gpioConf_t *gpios)
+ * @brief Los gpios se configuran de manera tal que sea correspondiente al digito recibido
+ * como parametro, en binario
+ * @param[in] digito corresponde a un digito del 1 al 9
+ * @param[in] gpios puntero de tipo estructura gpioConf_t,
+*/
 void muestradigito (uint8_t digito, gpioConf_t *gpios){
 	
 	for (uint8_t i = 0 ; i < 4 ; ++i){
@@ -54,6 +70,14 @@ void muestradigito (uint8_t digito, gpioConf_t *gpios){
 	}
 }
 
+/** @fn void muestra_numero (uint32_t pData, uint8_t pDigitos, gpioConf_t *gpios_digito, gpioConf_t *seleccion_bcd )
+ * @brief funcion que recibe un numero de 3 digitos decimales mediante pData, y realiza la muestra de cada digito 
+ * por la pantalla LCD
+ * @param[in] pData referencia numero decimal de 3 digitos
+ * @param[in] pDigitos parametro que representa la cantidad de digitos del numero deciamal, en este caso 3
+ * @param[in] gpios_digito puntero del tipo estructura gpioConf_t referencia a cada gpio para representar en binario
+ * @param[in] seleccion_bcd puntero del tipo estructura gpioConf_t referencia gpios que dara pulso para seleccionar cada display
+*/
 void muestra_numero ( uint32_t pData, uint8_t pDigitos, gpioConf_t *gpios_digito, gpioConf_t *seleccion_bcd ){
 
 	pDigitos = 0;
