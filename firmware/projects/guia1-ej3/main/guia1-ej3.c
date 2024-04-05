@@ -32,9 +32,9 @@
 
 /*==================[macros and definitions]=================================*/
 #define ON 1
-#define OFF 1
-#define TOGGLE 1
-#define CONFIG_BLINK_PERIOD 1000
+#define OFF 2
+#define TOGGLE 3
+#define CONFIG_BLINK_PERIOD 100
 
 /*==================[internal data definition]===============================*/
 
@@ -67,31 +67,25 @@ void controlleds (struct leds * led_ptr){
 			
 		}
 		else{ //falta probar que funcione bien el toggle.
-			if (led_ptr -> mode == TOGGLE){			
-				if (led_ptr -> n_led == 1){
-					for (int i = 0; i < led_ptr->n_ciclos ; ++i){
+			if (led_ptr -> mode == TOGGLE){	
+				//printf("modo toggle");		
+				for (int i = 0; i < led_ptr->n_ciclos ; ++i){
+					if (led_ptr -> n_led == 1){
+					LedToggle (led_ptr->n_led);											
+					} 
+					else if (led_ptr -> n_led == 2){
+						LedToggle (led_ptr->n_led);					
+						}
+						else {						
 						LedToggle (led_ptr->n_led);
-						for (int j = 0; j < led_ptr->periodo ; ++j){
+						}
+					//printf ("led toggle");			
+					for (int j = 0; j < led_ptr->periodo/100 ; ++j){
 							vTaskDelay (CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
-						}
-					}
-				} 
-				else if (led_ptr -> n_led == 2){
-						for (int i = 0; i < led_ptr->n_ciclos ; ++i){
-						LedToggle (led_ptr->n_led);
-						for (int j = 0; j < led_ptr->periodo ; ++j){
-						vTaskDelay (CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
-						}
-						}
-					}
-					else {
-						for (int i = 0; i < led_ptr->n_ciclos ; ++i){
-						LedToggle (led_ptr->n_led);
-						for (int j = 0; j < led_ptr->periodo ; ++j){
-							vTaskDelay (CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
-						}
-						}
-					}
+						}				
+				}
+				
+					
 			}
 		}
 	}
@@ -104,7 +98,7 @@ void app_main(void){
 	my_leds.mode = TOGGLE;
 	my_leds.n_led = 2;
 	my_leds.n_ciclos = 10;
-	my_leds.periodo = 5;
+	my_leds.periodo = 500;
 
 	controlleds (& my_leds);
 
