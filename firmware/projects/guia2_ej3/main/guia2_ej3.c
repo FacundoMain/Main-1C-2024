@@ -52,6 +52,10 @@ bool hold = false;
  *  @brief Variable global distancia.
 */
 uint16_t distancia = 0;
+
+/** @var pulgadas
+ *  @brief Bandera que indica si la medicion se hará en pulgadas.
+*/
 bool pulgadas = false;
 
 /** @def CONFIG_TIMER1_US
@@ -78,7 +82,6 @@ TaskHandle_t uart_tasksend_handle = NULL;
 */
 void FuncTimerA (void* param){
 	vTaskNotifyGiveFromISR (medir_task_handle, pdFALSE);
-	//vTaskNotifyGiveFromISR (uart_taskread_handle, pdFALSE);
 	vTaskNotifyGiveFromISR (lcd_task_handle, pdFALSE);
 	vTaskNotifyGiveFromISR (led_task_handle, pdFALSE);
 	vTaskNotifyGiveFromISR (uart_tasksend_handle, pdFALSE);	
@@ -106,19 +109,13 @@ static void cambiar_Hold (){
 static void medirTask (void *vParameter){
 	while (true){
 		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-		/*if (iniciar){
-			distancia = HcSr04ReadDistanceInCentimeters();
-		}
-		*/
 		if (iniciar && pulgadas == false){
 			distancia = HcSr04ReadDistanceInCentimeters();
 		}
 		if (iniciar && pulgadas == true){
 			distancia = HcSr04ReadDistanceInInches();
-		}
-		
-	}
-	
+		}		
+	}	
 }
 
 /** @fn static void muestraLCD (void *vParameter)
@@ -129,10 +126,10 @@ static void muestraLCD (void *vParameter){
 	while (true)
 	{
 		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-		if (iniciar){
+		
+		if (iniciar){		
 			
 			if (hold){
-
 			} else {
 				LcdItsE0803Write (distancia);
 			}
@@ -242,8 +239,6 @@ static void uartRead (void *vParameter){
 			cambiar_Hold();
 		}
         
-		//opcional primero ver si anda lo otro
-		
 		if (dato_leido == 'I'){
 			pulgadas =! pulgadas;
 		}
@@ -273,9 +268,6 @@ void app_main(void){
 		.param_p = NULL
 	};
 	UartInit (&puertoSerie);
-
-	//SwitchActivInt (SWITCH_1, &cambia_Iniciar, NULL );
-	//SwitchActivInt (SWITCH_2, &cambiar_Hold, NULL );
 
 	xTaskCreate(&medirTask, "MEDIR", 512, NULL, 5, &medir_task_handle);
 	xTaskCreate(&muestraLCD, "LCD", 512, NULL, 5, &lcd_task_handle);

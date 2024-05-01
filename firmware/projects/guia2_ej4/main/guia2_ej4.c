@@ -2,7 +2,8 @@
  *
  * @section genDesc General Description
  *
- * FIrmware que permite convertir datos analogicos a digitales, y viceversa.
+ * FIrmware que permite convertir datos analogicos a digitales, y viceversa. Se utiliza un vector que modeliza
+ * un ecg, y a traves de un DAC, y luego un ADC se envian los datos por puerto serie y se observa el ecg en un osciloscopio.
  *
  * <a href="https://drive.google.com/...">Operation Example</a>
  *
@@ -17,9 +18,9 @@
  *
  * |   Date	    | Description                                    |
  * |:----------:|:-----------------------------------------------|
- * | 12/09/2023 | Document creation		                         |
+ * | 25/04/2024 | Document creation		                         |
  *
- * @author Albano Peñalva (albano.penalva@uner.edu.ar)
+ * @author Facundo Main (facundo.main@ingenieria.uner.edu.ar)
  *
  */
 
@@ -49,7 +50,7 @@
 */
 #define CONFIG_TIMER2_US 4329 // 1/231hz = 4329 microseg
 /*==================[internal data definition]===============================*/
-//TaskHandle_t main_task_handle = NULL;
+
 TaskHandle_t uart_task_handle = NULL;
 TaskHandle_t adc_task_handle = NULL;
 TaskHandle_t dac_task_handle = NULL;
@@ -82,14 +83,14 @@ const char ecg[BUFFER_SIZE] = {
 */
 uint16_t valor;
 
-/** @var distancia
+/** @var contador
  *  @brief Variable global que permite el recorrido del vector ecg
 */
 int contador = 0;
 /*==================[internal functions declaration]=========================*/
 
 /** @fn void FuncTimer (void *vParameter)
-* @brief Funcion que utiliza el timer para llamar a las tareas.
+* @brief Funcion que utiliza el timer para llamar a las tareas ADC y UART.
 * @param[in] vParameter puntero tipo void 
 */
 void FuncTimer (void *vParameter){
@@ -183,7 +184,6 @@ void app_main(void){
 		.mode = ADC_SINGLE,
 		.func_p = NULL,
 		.param_p = NULL,
-		//.sample_frec = NULL
 	};
 	AnalogInputInit (&adc_config);
 	AnalogOutputInit ();
