@@ -330,6 +330,14 @@ Variables</h2></td></tr>
 <tr class="separator:a11fe1fd4be5bc0f028d673b9e3ea047b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7f1bcccbdc2615169d9c57878b037a0" id="r_aa7f1bcccbdc2615169d9c57878b037a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structspi__mcu__config__t.html">spi_mcu_config_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7f1bcccbdc2615169d9c57878b037a0">spi_conf</a></td></tr>
 <tr class="separator:aa7f1bcccbdc2615169d9c57878b037a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e7c3e34f62b2a12e66c7c95c8cc2e45" id="r_a0e7c3e34f62b2a12e66c7c95c8cc2e45"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group___s_p_i.html#ga7d468ea862538a179a76e97b9085f075">spi_dev_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e7c3e34f62b2a12e66c7c95c8cc2e45">ili9341_spi</a></td></tr>
+<tr class="separator:a0e7c3e34f62b2a12e66c7c95c8cc2e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2074dea2ff4e0d057d832f66620c6980" id="r_a2074dea2ff4e0d057d832f66620c6980"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group___g_i_o_p.html#gac6f7bd4f7ee306a4519f04641cbf2d67">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2074dea2ff4e0d057d832f66620c6980">ili9341_dc</a></td></tr>
+<tr class="separator:a2074dea2ff4e0d057d832f66620c6980"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a505be4ff1a5f1a7e4e814ec519221972" id="r_a505be4ff1a5f1a7e4e814ec519221972"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group___g_i_o_p.html#gac6f7bd4f7ee306a4519f04641cbf2d67">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a505be4ff1a5f1a7e4e814ec519221972">ili9341_rst</a></td></tr>
+<tr class="separator:a505be4ff1a5f1a7e4e814ec519221972"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4f096d289909a2a7b75ed08e2b9e6be" id="r_ab4f096d289909a2a7b75ed08e2b9e6be"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structorientation__properties__t.html">orientation_properties_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4f096d289909a2a7b75ed08e2b9e6be">lcd_orientation</a></td></tr>
+<tr class="separator:ab4f096d289909a2a7b75ed08e2b9e6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>TFT LCD RGB 240x320 ILI9341 driver. </p>
@@ -1277,7 +1285,7 @@ Changelog</h1>
 
 <p class="definition">Definición en la línea <a class="el" href="ili9341_8c_source.html#l00222">222</a> del archivo <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
-<p class="reference">Hace referencia a <a class="el" href="ili9341_8c_source.html#l00103">lcd_cmd_t::cmd</a>, <a class="el" href="ili9341_8c_source.html#l00105">lcd_cmd_t::data</a>, <a class="el" href="ili9341_8c_source.html#l00104">lcd_cmd_t::databytes</a>, <a class="el" href="gpio__mcu_8c_source.html#l00086">GPIOOff()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00081">GPIOOn()</a>, <a class="el" href="ili9341_8c_source.html#l00042">NULL</a>, <a class="el" href="ili9341_8c_source.html#l00167">spi_conf</a>, <a class="el" href="spi__mcu_8c_source.html#l00059">SpiInit()</a> y <a class="el" href="spi__mcu_8c_source.html#l00145">SpiWrite()</a>.</p>
+<p class="reference">Hace referencia a <a class="el" href="ili9341_8c_source.html#l00103">lcd_cmd_t::cmd</a>, <a class="el" href="ili9341_8c_source.html#l00105">lcd_cmd_t::data</a>, <a class="el" href="ili9341_8c_source.html#l00104">lcd_cmd_t::databytes</a>, <a class="el" href="gpio__mcu_8c_source.html#l00086">GPIOOff()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00081">GPIOOn()</a>, <a class="el" href="ili9341_8c_source.html#l00176">ili9341_dc</a>, <a class="el" href="ili9341_8c_source.html#l00175">ili9341_spi</a>, <a class="el" href="ili9341_8c_source.html#l00042">NULL</a>, <a class="el" href="ili9341_8c_source.html#l00167">spi_conf</a>, <a class="el" href="spi__mcu_8c_source.html#l00059">SpiInit()</a> y <a class="el" href="spi__mcu_8c_source.html#l00145">SpiWrite()</a>.</p>
 
 <p class="reference">Referenciado por <a class="el" href="ili9341_8c_source.html#l00260">Fill()</a>, <a class="el" href="ili9341_8c_source.html#l00380">ILI9341DrawChar()</a>, <a class="el" href="ili9341_8c_source.html#l00769">ILI9341DrawPicture()</a>, <a class="el" href="ili9341_8c_source.html#l00333">ILI9341DrawPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00300">ILI9341Init()</a>, <a class="el" href="ili9341_8c_source.html#l00345">ILI9341Rotate()</a> y <a class="el" href="ili9341_8c_source.html#l00238">SetCursorPosition()</a>.</p>
 
@@ -1403,6 +1411,86 @@ Changelog</h1>
 
 </div>
 </div>
+<a id="a2074dea2ff4e0d057d832f66620c6980" name="a2074dea2ff4e0d057d832f66620c6980"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2074dea2ff4e0d057d832f66620c6980">&#9670;&#160;</a></span>ili9341_dc</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___g_i_o_p.html#gac6f7bd4f7ee306a4519f04641cbf2d67">gpio_t</a> ili9341_dc</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="ili9341_8c_source.html#l00176">176</a> del archivo <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="ili9341_8c_source.html#l00300">ILI9341Init()</a> y <a class="el" href="ili9341_8c_source.html#l00222">WriteLCD()</a>.</p>
+
+</div>
+</div>
+<a id="a505be4ff1a5f1a7e4e814ec519221972" name="a505be4ff1a5f1a7e4e814ec519221972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a505be4ff1a5f1a7e4e814ec519221972">&#9670;&#160;</a></span>ili9341_rst</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___g_i_o_p.html#gac6f7bd4f7ee306a4519f04641cbf2d67">gpio_t</a> ili9341_rst</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>uC GPIO ports to use as CS, DC and RST </p>
+
+<p class="definition">Definición en la línea <a class="el" href="ili9341_8c_source.html#l00176">176</a> del archivo <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="ili9341_8c_source.html#l00300">ILI9341Init()</a>.</p>
+
+</div>
+</div>
+<a id="a0e7c3e34f62b2a12e66c7c95c8cc2e45" name="a0e7c3e34f62b2a12e66c7c95c8cc2e45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e7c3e34f62b2a12e66c7c95c8cc2e45">&#9670;&#160;</a></span>ili9341_spi</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___s_p_i.html#ga7d468ea862538a179a76e97b9085f075">spi_dev_t</a> ili9341_spi</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>uC SPI port </p>
+
+<p class="definition">Definición en la línea <a class="el" href="ili9341_8c_source.html#l00175">175</a> del archivo <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="ili9341_8c_source.html#l00300">ILI9341Init()</a> y <a class="el" href="ili9341_8c_source.html#l00222">WriteLCD()</a>.</p>
+
+</div>
+</div>
 <a id="a663c460e092a1eea379439ac9014b80c" name="a663c460e092a1eea379439ac9014b80c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a663c460e092a1eea379439ac9014b80c">&#9670;&#160;</a></span>lcd_init</h2>
 
@@ -1501,6 +1589,41 @@ Changelog</h1>
 <p class="definition">Definición en la línea <a class="el" href="ili9341_8c_source.html#l00162">162</a> del archivo <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
 
 <p class="reference">Referenciado por <a class="el" href="ili9341_8c_source.html#l00300">ILI9341Init()</a>.</p>
+
+</div>
+</div>
+<a id="ab4f096d289909a2a7b75ed08e2b9e6be" name="ab4f096d289909a2a7b75ed08e2b9e6be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4f096d289909a2a7b75ed08e2b9e6be">&#9670;&#160;</a></span>lcd_orientation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structorientation__properties__t.html">orientation_properties_t</a> lcd_orientation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Valor inicial:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">        <a class="code hl_define" href="group___i_l_i9341.html#ga0f07262d5faa91c725fa69a2847303d5">ILI9341_WIDTH</a>,</div>
+<div class="line">        <a class="code hl_define" href="group___i_l_i9341.html#ga19b26d4d6ae752db7302c9cbb8688d51">ILI9341_HEIGHT</a>,</div>
+<div class="line">        <a class="code hl_enumvalue" href="group___i_l_i9341.html#gga46360a506ec04c0ca618ee229bdad248a8a91947a781dff5aa13fee4123fc4017">ILI9341_Portrait_1</a></div>
+<div class="line">}</div>
+<div class="ttc" id="agroup___i_l_i9341_html_ga0f07262d5faa91c725fa69a2847303d5"><div class="ttname"><a href="group___i_l_i9341.html#ga0f07262d5faa91c725fa69a2847303d5">ILI9341_WIDTH</a></div><div class="ttdeci">#define ILI9341_WIDTH</div><div class="ttdef"><b>Definition</b> <a href="ili9341_8h_source.html#l00045">ili9341.h:45</a></div></div>
+<div class="ttc" id="agroup___i_l_i9341_html_ga19b26d4d6ae752db7302c9cbb8688d51"><div class="ttname"><a href="group___i_l_i9341.html#ga19b26d4d6ae752db7302c9cbb8688d51">ILI9341_HEIGHT</a></div><div class="ttdeci">#define ILI9341_HEIGHT</div><div class="ttdef"><b>Definition</b> <a href="ili9341_8h_source.html#l00046">ili9341.h:46</a></div></div>
+<div class="ttc" id="agroup___i_l_i9341_html_gga46360a506ec04c0ca618ee229bdad248a8a91947a781dff5aa13fee4123fc4017"><div class="ttname"><a href="group___i_l_i9341.html#gga46360a506ec04c0ca618ee229bdad248a8a91947a781dff5aa13fee4123fc4017">ILI9341_Portrait_1</a></div><div class="ttdeci">@ ILI9341_Portrait_1</div><div class="ttdef"><b>Definition</b> <a href="ili9341_8h_source.html#l00077">ili9341.h:77</a></div></div>
+</div><!-- fragment --><p>Default orientation configuration </p>
+
+<p class="definition">Definición en la línea <a class="el" href="ili9341_8c_source.html#l00178">178</a> del archivo <a class="el" href="ili9341_8c_source.html">ili9341.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="ili9341_8c_source.html#l00380">ILI9341DrawChar()</a>, <a class="el" href="ili9341_8c_source.html#l00499">ILI9341DrawLine()</a>, <a class="el" href="ili9341_8c_source.html#l00341">ILI9341Fill()</a> y <a class="el" href="ili9341_8c_source.html#l00345">ILI9341Rotate()</a>.</p>
 
 </div>
 </div>

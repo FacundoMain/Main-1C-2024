@@ -53,11 +53,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "analog__io__mcu_8c.html",
-"group___i_l_i9341.html#ga371e40bd6e120c18f7fff4a5a0f292b2",
-"group___m_p_u6050.html#ga51dd37010a9813a0bf1749c6797933f5",
-"group___m_p_u6050.html#gac573e571fcad258f86dde91664e5f342",
-"hx711_8c.html",
-"uart__mcu_8c.html#a18e13c9ac88403c42395bb0af487eb2d"
+"group___i_l_i9341.html#ga2eb4b5e896b0b144970f33002134bb98",
+"group___m_p_u6050.html#ga51162889c2f7d3ada6d181110cabb8ab",
+"group___m_p_u6050.html#gac31b5f056b43d0b3142cbab2382f59d0",
+"hc__sr04_8c.html#a05ecf89678042f348a45957db338d788",
+"switch_8h_source.html"
 ];
 
 var SYNCONMSG = 'pulsar para deshabilitar sincronización';

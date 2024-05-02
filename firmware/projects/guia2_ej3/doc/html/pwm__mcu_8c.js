@@ -7,5 +7,7 @@ var pwm__mcu_8c =
     [ "PWMOff", "group___p_w_m.html#ga43660d2e059ccf15efea7fff6a5fbfe4", null ],
     [ "PWMOn", "group___p_w_m.html#ga6fe31ebdc570ccdd776a7d4178566062", null ],
     [ "PWMSetDutyCycle", "group___p_w_m.html#ga427d00e7908ad5bc30e8a71dd07159ba", null ],
-    [ "PWMSetFreq", "group___p_w_m.html#ga223ccf708bb17d7bfb4ffb77d57c0501", null ]
+    [ "PWMSetFreq", "group___p_w_m.html#ga223ccf708bb17d7bfb4ffb77d57c0501", null ],
+    [ "ledc_channel_cfg", "pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4", null ],
+    [ "pwm_timer_cfg", "pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689", null ]
 ];

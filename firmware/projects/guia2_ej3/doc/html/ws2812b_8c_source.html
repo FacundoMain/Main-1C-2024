@@ -119,7 +119,8 @@ $(function(){initNavTree('ws2812b_8c_source.html',''); initResizable(); });
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">/*==================[internal functions declaration]=========================*/</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">/*==================[internal data definition]===============================*/</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">static</span> <span class="keyword">const</span> uint8_t gamma_table[256] = {</div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="ws2812b_8c.html#af3a89c094634c5d0df87c443ba4e8604">   28</a></span><span class="keyword">static</span> <span class="keyword">const</span> uint8_t <a class="code hl_variable" href="ws2812b_8c.html#af3a89c094634c5d0df87c443ba4e8604">gamma_table</a>[256] = {</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    0,   0,   0,   0,   0,   0,   0,   0,   0,   1,   1,   1,   1,   1,   1,</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    1,   1,   1,   1,   1,   1,   2,   2,   2,   2,   2,   2,   2,   2,   3,</div>
@@ -138,6 +139,7 @@ $(function(){initNavTree('ws2812b_8c_source.html',''); initResizable(); });
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    184, 186, 188, 191, 193, 195, 197, 199, 202, 204, 206, 209, 211, 213, 215,</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    218, 220, 223, 225, 227, 230, 232, 235, 237, 240, 242, 245, 247, 250, 252,</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    255};</div>
+</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">/*==================[external data definition]===============================*/</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">/*==================[internal functions definition]==========================*/</span></div>
@@ -426,7 +428,7 @@ $(function(){initNavTree('ws2812b_8c_source.html',''); initResizable(); });
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
 <div class="foldopen" id="foldopen00329" data-start="{" data-end="}">
 <div class="line"><a id="l00329" name="l00329"></a><span class="lineno"><a class="line" href="ws2812b_8c.html#af8b5a67621f64a435602bdfeca85d8c3">  329</a></span>uint8_t <a class="code hl_function" href="ws2812b_8c.html#af8b5a67621f64a435602bdfeca85d8c3">ws2812bGammaCorrection</a>(uint8_t component){</div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="keywordflow">return</span> gamma_table[component];</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="ws2812b_8c.html#af3a89c094634c5d0df87c443ba4e8604">gamma_table</a>[component];</div>
 <div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>}</div>
 </div>
 <div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
@@ -499,6 +501,7 @@ $(function(){initNavTree('ws2812b_8c_source.html',''); initResizable(); });
 <div class="ttc" id="aws2812b_8c_html_a77b8715bc283e04108cbecdf72e24b7d"><div class="ttname"><a href="ws2812b_8c.html#a77b8715bc283e04108cbecdf72e24b7d">ws2812bSendHigh</a></div><div class="ttdeci">void IRAM_ATTR ws2812bSendHigh(gpio_t pin)</div><div class="ttdef"><b>Definition</b> <a href="#l00050">ws2812b.c:50</a></div></div>
 <div class="ttc" id="aws2812b_8c_html_a8bafab9eba59f18ef73103a6ec526585"><div class="ttname"><a href="ws2812b_8c.html#a8bafab9eba59f18ef73103a6ec526585">pin_number</a></div><div class="ttdeci">gpio_t pin_number</div><div class="ttdef"><b>Definition</b> <a href="#l00024">ws2812b.c:24</a></div></div>
 <div class="ttc" id="aws2812b_8c_html_aa9331d068b87e6429728b37d83e3d798"><div class="ttname"><a href="ws2812b_8c.html#aa9331d068b87e6429728b37d83e3d798">RET_CMD</a></div><div class="ttdeci">#define RET_CMD</div><div class="ttdef"><b>Definition</b> <a href="#l00020">ws2812b.c:20</a></div></div>
+<div class="ttc" id="aws2812b_8c_html_af3a89c094634c5d0df87c443ba4e8604"><div class="ttname"><a href="ws2812b_8c.html#af3a89c094634c5d0df87c443ba4e8604">gamma_table</a></div><div class="ttdeci">static const uint8_t gamma_table[256]</div><div class="ttdef"><b>Definition</b> <a href="#l00028">ws2812b.c:28</a></div></div>
 <div class="ttc" id="aws2812b_8c_html_af8b5a67621f64a435602bdfeca85d8c3"><div class="ttname"><a href="ws2812b_8c.html#af8b5a67621f64a435602bdfeca85d8c3">ws2812bGammaCorrection</a></div><div class="ttdeci">uint8_t ws2812bGammaCorrection(uint8_t component)</div><div class="ttdef"><b>Definition</b> <a href="#l00329">ws2812b.c:329</a></div></div>
 <div class="ttc" id="aws2812b_8h_html"><div class="ttname"><a href="ws2812b_8h.html">ws2812b.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

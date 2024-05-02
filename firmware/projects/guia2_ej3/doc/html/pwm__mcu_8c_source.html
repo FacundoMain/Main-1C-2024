@@ -110,17 +110,21 @@ $(function(){initNavTree('pwm__mcu_8c_source.html',''); initResizable(); });
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="pwm__mcu_8c.html#a701d2222601b84faafa94cb1909df104">   16</a></span><span class="preprocessor">#define DC_MAX  1023</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="pwm__mcu_8c.html#a684bac99a5de1348b0cf76f80c31ae3d">   17</a></span><span class="preprocessor">#define DC_100  100</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">/*==================[internal data declaration]==============================*/</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">static</span> ledc_timer_config_t pwm_timer_cfg = {</div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">   19</a></span><span class="keyword">static</span> ledc_timer_config_t <a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a> = {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    .speed_mode       = LEDC_LOW_SPEED_MODE,</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    .duty_resolution  = LEDC_TIMER_10_BIT,</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    .clk_cfg          = LEDC_AUTO_CLK</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>};</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">static</span> ledc_channel_config_t ledc_channel_cfg = {</div>
+</div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">   24</a></span><span class="keyword">static</span> ledc_channel_config_t <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a> = {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    .speed_mode     = LEDC_LOW_SPEED_MODE,</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    .intr_type      = LEDC_INTR_DISABLE,</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    .duty           = 0,       </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    .hpoint         = 0</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
+</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">/*==================[internal functions declaration]=========================*/</span></div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">/*==================[internal data definition]===============================*/</span></div>
@@ -134,40 +138,40 @@ $(function(){initNavTree('pwm__mcu_8c_source.html',''); initResizable(); });
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="group___p_w_m.html#ga50ba8fd6442b4799b8fb9b2e2b859bbd">   39</a></span>uint8_t <a class="code hl_function" href="group___p_w_m.html#ga50ba8fd6442b4799b8fb9b2e2b859bbd">PWMInit</a>(<a class="code hl_typedef" href="group___p_w_m.html#ga1d363970f0a2cf766d46868c4e88c41a">pwm_out_t</a> out, <a class="code hl_typedef" href="group___g_i_o_p.html#gac6f7bd4f7ee306a4519f04641cbf2d67">gpio_t</a> gpio, uint16_t freq){</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordflow">switch</span>(out){</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group___p_w_m.html#gga5800a2bada92ba802e1cbdb0307f0c7ba857e21e20c27df92dec4574fcddfd740">PWM_0</a>:</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            pwm_timer_cfg.freq_hz = freq;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            pwm_timer_cfg.timer_num = LEDC_TIMER_0;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            ledc_timer_config(&amp;pwm_timer_cfg);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            ledc_channel_cfg.channel = LEDC_CHANNEL_0;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            ledc_channel_cfg.timer_sel = LEDC_TIMER_0;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            ledc_channel_cfg.gpio_num = gpio;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            ledc_channel_config(&amp;ledc_channel_cfg);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>.freq_hz = freq;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>.timer_num = LEDC_TIMER_0;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            ledc_timer_config(&amp;<a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.channel = LEDC_CHANNEL_0;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.timer_sel = LEDC_TIMER_0;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.gpio_num = gpio;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            ledc_channel_config(&amp;<a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group___p_w_m.html#gga5800a2bada92ba802e1cbdb0307f0c7baea3b5b1dcb8647c430bc9391799f4703">PWM_1</a>:</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            pwm_timer_cfg.freq_hz = freq;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            pwm_timer_cfg.timer_num = LEDC_TIMER_1;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            ledc_timer_config(&amp;pwm_timer_cfg);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            ledc_channel_cfg.channel = LEDC_CHANNEL_1;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            ledc_channel_cfg.timer_sel = LEDC_TIMER_1;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            ledc_channel_cfg.gpio_num = gpio;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            ledc_channel_config(&amp;ledc_channel_cfg);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>.freq_hz = freq;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>.timer_num = LEDC_TIMER_1;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            ledc_timer_config(&amp;<a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.channel = LEDC_CHANNEL_1;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.timer_sel = LEDC_TIMER_1;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.gpio_num = gpio;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            ledc_channel_config(&amp;<a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>);</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group___p_w_m.html#gga5800a2bada92ba802e1cbdb0307f0c7bab8296af41c4fdd6fd2dc62d6c761bdf6">PWM_2</a>:</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            pwm_timer_cfg.freq_hz = freq;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            pwm_timer_cfg.timer_num = LEDC_TIMER_2;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            ledc_timer_config(&amp;pwm_timer_cfg);</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            ledc_channel_cfg.channel = LEDC_CHANNEL_2;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            ledc_channel_cfg.timer_sel = LEDC_TIMER_2;</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            ledc_channel_cfg.gpio_num = gpio;</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            ledc_channel_config(&amp;ledc_channel_cfg);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>.freq_hz = freq;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>.timer_num = LEDC_TIMER_2;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            ledc_timer_config(&amp;<a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.channel = LEDC_CHANNEL_2;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.timer_sel = LEDC_TIMER_2;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.gpio_num = gpio;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            ledc_channel_config(&amp;<a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>);</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="group___p_w_m.html#gga5800a2bada92ba802e1cbdb0307f0c7ba44646d1313a5c911c1500447f531f542">PWM_3</a>:</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            pwm_timer_cfg.freq_hz = freq;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            pwm_timer_cfg.timer_num = LEDC_TIMER_3;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            ledc_timer_config(&amp;pwm_timer_cfg);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            ledc_channel_cfg.channel = LEDC_CHANNEL_3;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            ledc_channel_cfg.timer_sel = LEDC_TIMER_3;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            ledc_channel_cfg.gpio_num = gpio;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            ledc_channel_config(&amp;ledc_channel_cfg);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>.freq_hz = freq;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>.timer_num = LEDC_TIMER_3;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            ledc_timer_config(&amp;<a class="code hl_variable" href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a>);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.channel = LEDC_CHANNEL_3;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.timer_sel = LEDC_TIMER_3;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>            <a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>.gpio_num = gpio;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            ledc_channel_config(&amp;<a class="code hl_variable" href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a>);</div>
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    }</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">return</span> 0;</div>
@@ -294,6 +298,8 @@ $(function(){initNavTree('pwm__mcu_8c_source.html',''); initResizable(); });
 <div class="ttc" id="agroup___p_w_m_html_gga5800a2bada92ba802e1cbdb0307f0c7baea3b5b1dcb8647c430bc9391799f4703"><div class="ttname"><a href="group___p_w_m.html#gga5800a2bada92ba802e1cbdb0307f0c7baea3b5b1dcb8647c430bc9391799f4703">PWM_1</a></div><div class="ttdeci">@ PWM_1</div><div class="ttdef"><b>Definition</b> <a href="pwm__mcu_8h_source.html#l00035">pwm_mcu.h:35</a></div></div>
 <div class="ttc" id="apwm__mcu_8c_html_a684bac99a5de1348b0cf76f80c31ae3d"><div class="ttname"><a href="pwm__mcu_8c.html#a684bac99a5de1348b0cf76f80c31ae3d">DC_100</a></div><div class="ttdeci">#define DC_100</div><div class="ttdef"><b>Definition</b> <a href="#l00017">pwm_mcu.c:17</a></div></div>
 <div class="ttc" id="apwm__mcu_8c_html_a701d2222601b84faafa94cb1909df104"><div class="ttname"><a href="pwm__mcu_8c.html#a701d2222601b84faafa94cb1909df104">DC_MAX</a></div><div class="ttdeci">#define DC_MAX</div><div class="ttdef"><b>Definition</b> <a href="#l00016">pwm_mcu.c:16</a></div></div>
+<div class="ttc" id="apwm__mcu_8c_html_abb93cc537d6eeb3cd5f4afb77e336689"><div class="ttname"><a href="pwm__mcu_8c.html#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a></div><div class="ttdeci">static ledc_timer_config_t pwm_timer_cfg</div><div class="ttdef"><b>Definition</b> <a href="#l00019">pwm_mcu.c:19</a></div></div>
+<div class="ttc" id="apwm__mcu_8c_html_afdbd72a578c44a814b0e9e8be614a0d4"><div class="ttname"><a href="pwm__mcu_8c.html#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a></div><div class="ttdeci">static ledc_channel_config_t ledc_channel_cfg</div><div class="ttdef"><b>Definition</b> <a href="#l00024">pwm_mcu.c:24</a></div></div>
 <div class="ttc" id="apwm__mcu_8h_html"><div class="ttname"><a href="pwm__mcu_8h.html">pwm_mcu.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

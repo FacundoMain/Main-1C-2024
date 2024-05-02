@@ -2,6 +2,9 @@ var timer__mcu_8c =
 [
     [ "RESET_COUNT_VALUE", "timer__mcu_8c.html#aa7a65675b0d17a71d0646e743bb4d1f0", null ],
     [ "US_RESOLUTION_HZ", "timer__mcu_8c.html#a0084affffdb426de14a2629cfe92c652", null ],
+    [ "timer_a_isr", "timer__mcu_8c.html#ae249acbc7062cc522875e5733b31cfd9", null ],
+    [ "timer_b_isr", "timer__mcu_8c.html#a4001cf6b56a7098f33accf4e21f68b64", null ],
+    [ "timer_c_isr", "timer__mcu_8c.html#a14ff639e51844024d7a503ef7350435e", null ],
     [ "TimerInit", "group___timer.html#gae8617c0d176463a60441464ad26563f6", null ],
     [ "TimerReset", "group___timer.html#ga80ed309959e5a179f5676ed4af547fa1", null ],
     [ "TimerStart", "group___timer.html#ga0b1779c5b8f91cc83c8bfd127071ea2f", null ],

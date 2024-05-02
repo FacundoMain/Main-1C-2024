@@ -1,10 +1,14 @@
 var searchData=
 [
-  ['writelcd_0',['WriteLCD',['../ili9341_8c.html#aa1174c3cbb4307e2913a29c5234ee7e6',1,'ili9341.c']]],
-  ['ws2812bgammacorrection_1',['ws2812bGammaCorrection',['../ws2812b_8c.html#af8b5a67621f64a435602bdfeca85d8c3',1,'ws2812b.c']]],
-  ['ws2812binit_2',['ws2812bInit',['../group___w_s2812_b.html#gab5724b524301eafce386e26782206b3c',1,'ws2812bInit(gpio_t pin):&#160;ws2812b.c'],['../group___w_s2812_b.html#gab5724b524301eafce386e26782206b3c',1,'ws2812bInit(gpio_t pin):&#160;ws2812b.c']]],
-  ['ws2812bsend_3',['ws2812bSend',['../group___w_s2812_b.html#ga6efc852be97e10768f170756c0bde024',1,'ws2812bSend(rgb_led_t led_color):&#160;ws2812b.c'],['../group___w_s2812_b.html#ga6efc852be97e10768f170756c0bde024',1,'ws2812bSend(rgb_led_t led_color):&#160;ws2812b.c']]],
-  ['ws2812bsendhigh_4',['ws2812bSendHigh',['../ws2812b_8c.html#a77b8715bc283e04108cbecdf72e24b7d',1,'ws2812b.c']]],
-  ['ws2812bsendlow_5',['ws2812bSendLow',['../ws2812b_8c.html#a36657f62d50cb950ac553ad8afeefdc0',1,'ws2812b.c']]],
-  ['ws2812bsendret_6',['ws2812bSendRet',['../group___w_s2812_b.html#ga7f917e1d76a1edff14b8bac723a169d8',1,'ws2812bSendRet(void):&#160;ws2812b.c'],['../group___w_s2812_b.html#ga7f917e1d76a1edff14b8bac723a169d8',1,'ws2812bSendRet(void):&#160;ws2812b.c']]]
+  ['uart_5fconn_5fevent_5ftask_0',['uart_conn_event_task',['../uart__mcu_8c.html#ae938d3bd6a8770091df746ad77cede7f',1,'uart_mcu.c']]],
+  ['uart_5fpc_5fevent_5ftask_1',['uart_pc_event_task',['../uart__mcu_8c.html#a4a3cb41b1896636e053474f8444bfd35',1,'uart_mcu.c']]],
+  ['uartinit_2',['UartInit',['../group___u_a_r_t.html#ga440f6a03dfd8b310f5fdf42c3bf20c42',1,'UartInit(serial_config_t *port_config):&#160;uart_mcu.c'],['../group___u_a_r_t.html#ga440f6a03dfd8b310f5fdf42c3bf20c42',1,'UartInit(serial_config_t *port_config):&#160;uart_mcu.c']]],
+  ['uartitoa_3',['UartItoa',['../group___u_a_r_t.html#ga00c7e785d2874c52bab6e4dba88a5e23',1,'UartItoa(uint32_t val, uint8_t base):&#160;uart_mcu.c'],['../group___u_a_r_t.html#ga00c7e785d2874c52bab6e4dba88a5e23',1,'UartItoa(uint32_t val, uint8_t base):&#160;uart_mcu.c']]],
+  ['uartread_4',['uartRead',['../guia2__ej3_8c.html#a98ba1824d44cc4c3ccd3fe468760aa87',1,'guia2_ej3.c']]],
+  ['uartreadbuffer_5',['UartReadBuffer',['../group___u_a_r_t.html#gaec359d22a59e650a21a0666dad59656a',1,'UartReadBuffer(uart_mcu_port_t port, uint8_t *data, uint16_t nbytes):&#160;uart_mcu.c'],['../group___u_a_r_t.html#gaec359d22a59e650a21a0666dad59656a',1,'UartReadBuffer(uart_mcu_port_t port, uint8_t *data, uint16_t nbytes):&#160;uart_mcu.c']]],
+  ['uartreadbyte_6',['UartReadByte',['../group___u_a_r_t.html#ga37f1b16880c3ca70ed2e543566d555d2',1,'UartReadByte(uart_mcu_port_t port, uint8_t *data):&#160;uart_mcu.c'],['../group___u_a_r_t.html#ga37f1b16880c3ca70ed2e543566d555d2',1,'UartReadByte(uart_mcu_port_t port, uint8_t *data):&#160;uart_mcu.c']]],
+  ['uartsendbuffer_7',['UartSendBuffer',['../group___u_a_r_t.html#ga81fce0b6465799566af3cc8cc896c45e',1,'UartSendBuffer(uart_mcu_port_t port, const char *data, uint8_t nbytes):&#160;uart_mcu.c'],['../group___u_a_r_t.html#ga81fce0b6465799566af3cc8cc896c45e',1,'UartSendBuffer(uart_mcu_port_t port, const char *data, uint8_t nbytes):&#160;uart_mcu.c']]],
+  ['uartsendbyte_8',['UartSendByte',['../group___u_a_r_t.html#gaeb142fa2425b80bddba60121b1cf13f2',1,'UartSendByte(uart_mcu_port_t port, const char *data):&#160;uart_mcu.c'],['../group___u_a_r_t.html#gaeb142fa2425b80bddba60121b1cf13f2',1,'UartSendByte(uart_mcu_port_t port, const char *data):&#160;uart_mcu.c']]],
+  ['uartsendstring_9',['UartSendString',['../group___u_a_r_t.html#ga60db217694ea24ad75fcedda3336a3a8',1,'UartSendString(uart_mcu_port_t port, const char *msg):&#160;uart_mcu.c'],['../group___u_a_r_t.html#ga60db217694ea24ad75fcedda3336a3a8',1,'UartSendString(uart_mcu_port_t port, const char *msg):&#160;uart_mcu.c']]],
+  ['uarttasksend_10',['uartTaskSend',['../guia2__ej3_8c.html#ae50655031661ee1605258b09fa500590',1,'guia2_ej3.c']]]
 ];

@@ -146,6 +146,8 @@ Funciones</h2></td></tr>
 Variables</h2></td></tr>
 <tr class="memitem:a8bafab9eba59f18ef73103a6ec526585" id="r_a8bafab9eba59f18ef73103a6ec526585"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___g_i_o_p.html#gac6f7bd4f7ee306a4519f04641cbf2d67">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bafab9eba59f18ef73103a6ec526585">pin_number</a></td></tr>
 <tr class="separator:a8bafab9eba59f18ef73103a6ec526585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3a89c094634c5d0df87c443ba4e8604" id="r_af3a89c094634c5d0df87c443ba4e8604"><td class="memItemLeft" align="right" valign="top">static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3a89c094634c5d0df87c443ba4e8604">gamma_table</a> [256]</td></tr>
+<tr class="separator:af3a89c094634c5d0df87c443ba4e8604"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentación de «define»</h2>
 <a id="add6d2693f5d356b091088437148f939b" name="add6d2693f5d356b091088437148f939b"></a>
@@ -218,6 +220,8 @@ Variables</h2></td></tr>
 
 <p class="definition">Definición en la línea <a class="el" href="ws2812b_8c_source.html#l00329">329</a> del archivo <a class="el" href="ws2812b_8c_source.html">ws2812b.c</a>.</p>
 
+<p class="reference">Hace referencia a <a class="el" href="ws2812b_8c_source.html#l00028">gamma_table</a>.</p>
+
 <p class="reference">Referenciado por <a class="el" href="ws2812b_8c_source.html#l00340">ws2812bSend()</a>.</p>
 
 </div>
@@ -269,6 +273,51 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Documentación de variables</h2>
+<a id="af3a89c094634c5d0df87c443ba4e8604" name="af3a89c094634c5d0df87c443ba4e8604"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3a89c094634c5d0df87c443ba4e8604">&#9670;&#160;</a></span>gamma_table</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t gamma_table[256]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Valor inicial:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,</div>
+<div class="line">    0,   0,   0,   0,   0,   0,   0,   0,   0,   1,   1,   1,   1,   1,   1,</div>
+<div class="line">    1,   1,   1,   1,   1,   1,   2,   2,   2,   2,   2,   2,   2,   2,   3,</div>
+<div class="line">    3,   3,   3,   3,   3,   4,   4,   4,   4,   5,   5,   5,   5,   5,   6,</div>
+<div class="line">    6,   6,   6,   7,   7,   7,   8,   8,   8,   9,   9,   9,   10,  10,  10,</div>
+<div class="line">    11,  11,  11,  12,  12,  13,  13,  13,  14,  14,  15,  15,  16,  16,  17,</div>
+<div class="line">    17,  18,  18,  19,  19,  20,  20,  21,  21,  22,  22,  23,  24,  24,  25,</div>
+<div class="line">    25,  26,  27,  27,  28,  29,  29,  30,  31,  31,  32,  33,  34,  34,  35,</div>
+<div class="line">    36,  37,  38,  38,  39,  40,  41,  42,  42,  43,  44,  45,  46,  47,  48,</div>
+<div class="line">    49,  50,  51,  52,  53,  54,  55,  56,  57,  58,  59,  60,  61,  62,  63,</div>
+<div class="line">    64,  65,  66,  68,  69,  70,  71,  72,  73,  75,  76,  77,  78,  80,  81,</div>
+<div class="line">    82,  84,  85,  86,  88,  89,  90,  92,  93,  94,  96,  97,  99,  100, 102,</div>
+<div class="line">    103, 105, 106, 108, 109, 111, 112, 114, 115, 117, 119, 120, 122, 124, 125,</div>
+<div class="line">    127, 129, 130, 132, 134, 136, 137, 139, 141, 143, 145, 146, 148, 150, 152,</div>
+<div class="line">    154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178, 180, 182,</div>
+<div class="line">    184, 186, 188, 191, 193, 195, 197, 199, 202, 204, 206, 209, 211, 213, 215,</div>
+<div class="line">    218, 220, 223, 225, 227, 230, 232, 235, 237, 240, 242, 245, 247, 250, 252,</div>
+<div class="line">    255}</div>
+</div><!-- fragment -->
+<p class="definition">Definición en la línea <a class="el" href="ws2812b_8c_source.html#l00028">28</a> del archivo <a class="el" href="ws2812b_8c_source.html">ws2812b.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="ws2812b_8c_source.html#l00329">ws2812bGammaCorrection()</a>.</p>
+
+</div>
+</div>
 <a id="a8bafab9eba59f18ef73103a6ec526585" name="a8bafab9eba59f18ef73103a6ec526585"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8bafab9eba59f18ef73103a6ec526585">&#9670;&#160;</a></span>pin_number</h2>
 

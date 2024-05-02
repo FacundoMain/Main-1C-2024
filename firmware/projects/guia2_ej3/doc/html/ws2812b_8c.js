@@ -9,5 +9,6 @@ var ws2812b_8c =
     [ "ws2812bSendHigh", "ws2812b_8c.html#a77b8715bc283e04108cbecdf72e24b7d", null ],
     [ "ws2812bSendLow", "ws2812b_8c.html#a36657f62d50cb950ac553ad8afeefdc0", null ],
     [ "ws2812bSendRet", "group___w_s2812_b.html#ga7f917e1d76a1edff14b8bac723a169d8", null ],
+    [ "gamma_table", "ws2812b_8c.html#af3a89c094634c5d0df87c443ba4e8604", null ],
     [ "pin_number", "ws2812b_8c.html#a8bafab9eba59f18ef73103a6ec526585", null ]
 ];

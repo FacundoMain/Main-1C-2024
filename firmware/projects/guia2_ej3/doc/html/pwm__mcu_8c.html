@@ -101,7 +101,8 @@ $(function(){initNavTree('pwm__mcu_8c.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#define-members">defines</a> &#124;
-<a href="#func-members">Funciones</a>  </div>
+<a href="#func-members">Funciones</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">Referencia del archivo pwm_mcu.c</div></div>
 </div><!--header-->
 <div class="contents">
@@ -137,6 +138,13 @@ Funciones</h2></td></tr>
 <tr class="memitem:gad2556985508ded35e34bccc1e974fe6b" id="r_gad2556985508ded35e34bccc1e974fe6b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___p_w_m.html#gad2556985508ded35e34bccc1e974fe6b">PWMDeinit</a> (<a class="el" href="group___p_w_m.html#ga1d363970f0a2cf766d46868c4e88c41a">pwm_out_t</a> out)</td></tr>
 <tr class="memdesc:gad2556985508ded35e34bccc1e974fe6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">PWM output de-inicialization.  <br /></td></tr>
 <tr class="separator:gad2556985508ded35e34bccc1e974fe6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:abb93cc537d6eeb3cd5f4afb77e336689" id="r_abb93cc537d6eeb3cd5f4afb77e336689"><td class="memItemLeft" align="right" valign="top">static ledc_timer_config_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb93cc537d6eeb3cd5f4afb77e336689">pwm_timer_cfg</a></td></tr>
+<tr class="separator:abb93cc537d6eeb3cd5f4afb77e336689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdbd72a578c44a814b0e9e8be614a0d4" id="r_afdbd72a578c44a814b0e9e8be614a0d4"><td class="memItemLeft" align="right" valign="top">static ledc_channel_config_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdbd72a578c44a814b0e9e8be614a0d4">ledc_channel_cfg</a></td></tr>
+<tr class="separator:afdbd72a578c44a814b0e9e8be614a0d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
 <div class="textblock"><dl class="section author"><dt>Autor</dt><dd>Albano Peñalva (<a href="#" onclick="location.href='mai'+'lto:'+'alb'+'an'+'o.p'+'en'+'alv'+'a@'+'une'+'r.'+'edu'+'.a'+'r'; return false;">alban<span class="obfuscator">.nosp@m.</span>o.pe<span class="obfuscator">.nosp@m.</span>nalva<span class="obfuscator">.nosp@m.</span>@une<span class="obfuscator">.nosp@m.</span>r.edu<span class="obfuscator">.nosp@m.</span>.ar</a>) </dd></dl>
@@ -179,6 +187,70 @@ Funciones</h2></td></tr>
 <p class="definition">Definición en la línea <a class="el" href="pwm__mcu_8c_source.html#l00016">16</a> del archivo <a class="el" href="pwm__mcu_8c_source.html">pwm_mcu.c</a>.</p>
 
 <p class="reference">Referenciado por <a class="el" href="pwm__mcu_8c_source.html#l00115">PWMSetDutyCycle()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de variables</h2>
+<a id="afdbd72a578c44a814b0e9e8be614a0d4" name="afdbd72a578c44a814b0e9e8be614a0d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdbd72a578c44a814b0e9e8be614a0d4">&#9670;&#160;</a></span>ledc_channel_cfg</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ledc_channel_config_t ledc_channel_cfg</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Valor inicial:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    .speed_mode     = LEDC_LOW_SPEED_MODE,</div>
+<div class="line">    .intr_type      = LEDC_INTR_DISABLE,</div>
+<div class="line">    .duty           = 0,       </div>
+<div class="line">    .hpoint         = 0</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p class="definition">Definición en la línea <a class="el" href="pwm__mcu_8c_source.html#l00024">24</a> del archivo <a class="el" href="pwm__mcu_8c_source.html">pwm_mcu.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="pwm__mcu_8c_source.html#l00039">PWMInit()</a>.</p>
+
+</div>
+</div>
+<a id="abb93cc537d6eeb3cd5f4afb77e336689" name="abb93cc537d6eeb3cd5f4afb77e336689"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb93cc537d6eeb3cd5f4afb77e336689">&#9670;&#160;</a></span>pwm_timer_cfg</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ledc_timer_config_t pwm_timer_cfg</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Valor inicial:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    .speed_mode       = LEDC_LOW_SPEED_MODE,</div>
+<div class="line">    .duty_resolution  = LEDC_TIMER_10_BIT,</div>
+<div class="line">    .clk_cfg          = LEDC_AUTO_CLK</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+<p class="definition">Definición en la línea <a class="el" href="pwm__mcu_8c_source.html#l00019">19</a> del archivo <a class="el" href="pwm__mcu_8c_source.html">pwm_mcu.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="pwm__mcu_8c_source.html#l00039">PWMInit()</a>.</p>
 
 </div>
 </div>
