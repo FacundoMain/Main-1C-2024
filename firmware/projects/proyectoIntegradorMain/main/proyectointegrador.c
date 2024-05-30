@@ -30,22 +30,33 @@
 #include <max3010x.h>
 #include <spo2_algorithm.h>
 #include <math.h>
+#include "switch.h"
+#include "timer_mcu.h"
+#include "analog_io_mcu.h"
 /*==================[macros and definitions]=================================*/
 
-#define MAX_PEAKS 20
+#define MAX_PEAKS 40
+#define BUFFER_SIZE_DATA 2000
+#define SAMPLE_FREQ 100
 
-uint8_t temperatura;
+uint16_t temperatura;
 float HRV = 0.0;
 bool estresHRV = false;
 bool estresTemp = false;
 bool estresTotal = false;
+bool iniciar = false;
 
 int32_t peak_intervals[MAX_PEAKS];  //almacena intervalos entre picos de señal ppg
 int32_t peak_count = 0;  //contador de picos se señal ppg
 
+uint32_t irBuffer[BUFFER_SIZE_DATA]; //infrared LED sensor data
+int32_t bufferLength=BUFFER_SIZE_DATA; //data length
+int32_t heartRate; //heart rate value
+int8_t validHeartRate; //indicator to show if the heart rate calculation is valid
+
 /*==================[internal data definition]===============================*/
 
-TaskHandle_t medirVariabilidad_task_handle = NULL;
+TaskHandle_t utilizarSensor_task_handle = NULL;
 TaskHandle_t medirTemperatura_task_handle = NULL;
 TaskHandle_t detectarNivelEstres_task_handle = NULL;
 TaskHandle_t transmitirDato_task_handle = NULL;
@@ -53,13 +64,40 @@ TaskHandle_t transmitirDato_task_handle = NULL;
 
 /*==================[internal functions declaration]=========================*/
 
+static void cambia_iniciar (){
+	iniciar =! iniciar;
+}
+
+void utilizarSensorTask (void *vParameter){
+	while (true){
+		if (iniciar) {
+			uint8_t i;
+			for (i = 25; i < BUFFER_SIZE_DATA; i++)
+			{
+				irBuffer[i - 25] = irBuffer[i];
+			}
+
+			//take 25 sets of samples before calculating the heart rate.
+			for ( i = BUFFER_SIZE_DATA - 25 ; i < BUFFER_SIZE_DATA ; i++)
+			{
+				while (MAX3010X_available() == false) //do we have new data?
+					MAX3010X_check(); //Check the sensor for new data
+				
+				irBuffer[i] = MAX3010X_getIR();
+				MAX3010X_nextSample(); //We're finished with this sample so move to next sample        
+
+			}
+		}
+	}
+}
+
 void calculointervalos (uint32_t *pun_ir_buffer, int32_t n_ir_buffer_length, int32_t *pn_heart_rate, int8_t *pch_hr_valid){
 
 	uint32_t un_ir_mean;  
 	int32_t k;
 	int32_t i, n_exact_ir_valley_locs_count;
 	int32_t n_th1, n_npks;
-	int32_t an_ir_valley_locs[15] ;
+	int32_t an_ir_valley_locs[40] ;
 	int32_t n_peak_interval_sum;
 	
 	// calculates DC mean and subtract DC from ir
@@ -113,41 +151,58 @@ void calculointervalos (uint32_t *pun_ir_buffer, int32_t n_ir_buffer_length, int
 }
 
 
-void medirVariabilidadTask (void *vParameter){
+void medirVariabilidad (void *vParameter){
 	// se usa la desviacion estandar de los intervalos RR (SDNN)
-	calculointervalos;
-	if (peak_count < 2) // No suficiente datos
-	return -1; 
+	if (iniciar){
+		calculointervalos(irBuffer, bufferLength, &heartRate, &validHeartRate);
+		//if (peak_count < 2) // No suficiente datos
+		//return -1;
+		//; 
 
-  	float mean = 0.0;
-  	for (int i = 0; i < peak_count; i++) {
-    	mean += peak_intervals[i];
-  	}
-  	mean /= peak_count;
+  		float mean = 0.0;
+  		for (int i = 0; i < peak_count; i++) {
+    		mean += peak_intervals[i];
+  		}
+  		mean /= peak_count;
 
-  	for (int i = 0; i < peak_count; i++) {
-    	HRV += pow(peak_intervals[i] - mean, 2);
-  	}
+  		for (int i = 0; i < peak_count; i++) {
+    		HRV += pow(peak_intervals[i] - mean, 2);
+  		}
 
-  	HRV /= (peak_count - 1);
-	HRV = sqrt(HRV);
+  		HRV /= (peak_count - 1);
+		HRV = sqrt(HRV);
+	}
+	
 }
 
 void medirTemperaturaTask (void *vParameter){
-
+	while (true){
+		AnalogInputReadSingle (CH1, &temperatura);
+	}
+	
 }
 
 void detectarNivelEstresTask (void *vParameter){
 
-	if (HRV < 25){
-		estresHRV = true;
-	}
-	else estresHRV = false;
+	while (true) {
+		
+		if (iniciar){
 
-	if (estresHRV && estresTemp){
-		estresTotal = true;
-	}
+			if (HRV < 25){
+				estresHRV = true;
+			}
+			else estresHRV = false;
+			if (temperatura < 3700){
+				estresTemp = true;
+			}
+			else estresTemp = false;
 
+			if (estresHRV && estresTemp){
+				estresTotal = true;
+			}
+		}
+	}
+			
 }
 
 void transmitirDatoTask (void *vParameter){
@@ -158,5 +213,10 @@ void transmitirDatoTask (void *vParameter){
 /*==================[external functions definition]==========================*/
 void app_main(void){
 	
+	MAX3010X_begin();
+	MAX3010X_setup(30, 1, 2, SAMPLE_FREQ, 69, 4096);
+	SwitchesInit();
+
+	SwitchActivInt (SWITCH_1, &cambia_iniciar, NULL);
 }
 /*==================[end of file]============================================*/
