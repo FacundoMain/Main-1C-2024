@@ -1,0 +1,978 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ParcialMAIN: Referencia del archivo C:/Repositorios/Main-1C-2024/firmware/projects/ParcialMAIN/main/ParcialMAIN.c</title>
+<link rel="icon" href="icon.ico" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="fiuner.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">ParcialMAIN<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('_parcial_m_a_i_n_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">defines</a> &#124;
+<a href="#func-members">Funciones</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo ParcialMAIN.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
+<code>#include &quot;freertos/task.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="gpio__mcu_8h_source.html">gpio_mcu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="timer__mcu_8h_source.html">timer_mcu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="analog__io__mcu_8h_source.html">analog_io_mcu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="uart__mcu_8h_source.html">uart_mcu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="switch_8h_source.html">switch.h</a>&quot;</code><br />
+</div>
+<p><a href="_parcial_m_a_i_n_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a0d0609f396d7fe51d2c140275d051dd8" id="r_a0d0609f396d7fe51d2c140275d051dd8"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="#ac920cff85655796bc678aba55a237eb1">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d0609f396d7fe51d2c140275d051dd8">TIMER2_CONFIG_US</a>&#160;&#160;&#160;5000000</td></tr>
+<tr class="memdesc:a0d0609f396d7fe51d2c140275d051dd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indica el tiempo en microsegundos del timer2 para trasmitir.  <br /></td></tr>
+<tr class="separator:a0d0609f396d7fe51d2c140275d051dd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31ec4860e371837ce1d199c9c1464915" id="r_a31ec4860e371837ce1d199c9c1464915"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="#ac920cff85655796bc678aba55a237eb1">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31ec4860e371837ce1d199c9c1464915">TIMER1_CONFIG_US</a>&#160;&#160;&#160;3000000</td></tr>
+<tr class="memdesc:a31ec4860e371837ce1d199c9c1464915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indica el tiempo en microsegundos del timer1 para trasmitir.  <br /></td></tr>
+<tr class="separator:a31ec4860e371837ce1d199c9c1464915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:ae482bea5510eee4a7ed9123e49a7555b" id="r_ae482bea5510eee4a7ed9123e49a7555b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae482bea5510eee4a7ed9123e49a7555b">FuncTimer1</a> (<a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> *<a class="el" href="#ac920cff85655796bc678aba55a237eb1">param</a>)</td></tr>
+<tr class="separator:ae482bea5510eee4a7ed9123e49a7555b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33eb645da46e6817868f0a25d7c4f5d3" id="r_a33eb645da46e6817868f0a25d7c4f5d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33eb645da46e6817868f0a25d7c4f5d3">FuncTimer2</a> (<a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> *<a class="el" href="#ac920cff85655796bc678aba55a237eb1">param</a>)</td></tr>
+<tr class="separator:a33eb645da46e6817868f0a25d7c4f5d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9305787223af2294545eb9e3e568450b" id="r_a9305787223af2294545eb9e3e568450b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9305787223af2294545eb9e3e568450b">SensorHumInit</a> (<a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a> <a class="el" href="#ac920cff85655796bc678aba55a237eb1">pHumedad</a>, <a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a> <a class="el" href="#ac920cff85655796bc678aba55a237eb1">pBombaAG</a>)</td></tr>
+<tr class="memdesc:a9305787223af2294545eb9e3e568450b"><td class="mdescLeft">&#160;</td><td class="mdescRight">inicializador del sensor de humedad  <br /></td></tr>
+<tr class="separator:a9305787223af2294545eb9e3e568450b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a194ef8cef81bb52a46a71470a85ea7f4" id="r_a194ef8cef81bb52a46a71470a85ea7f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a194ef8cef81bb52a46a71470a85ea7f4">SensorHumFunc</a> ()</td></tr>
+<tr class="memdesc:a194ef8cef81bb52a46a71470a85ea7f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">sensor de humedad en funcionamiento  <br /></td></tr>
+<tr class="separator:a194ef8cef81bb52a46a71470a85ea7f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0023007b7f9a46d8b672e8a5226b0f73" id="r_a0023007b7f9a46d8b672e8a5226b0f73"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0023007b7f9a46d8b672e8a5226b0f73">BombapHAInit</a> (<a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a> <a class="el" href="#ac920cff85655796bc678aba55a237eb1">pBombapHA</a>)</td></tr>
+<tr class="memdesc:a0023007b7f9a46d8b672e8a5226b0f73"><td class="mdescLeft">&#160;</td><td class="mdescRight">inicializador de la bomba de phA  <br /></td></tr>
+<tr class="separator:a0023007b7f9a46d8b672e8a5226b0f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1cb406c7718e5bc573e8aa4fd9ff877" id="r_ab1cb406c7718e5bc573e8aa4fd9ff877"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1cb406c7718e5bc573e8aa4fd9ff877">BombapHBInit</a> (<a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a> <a class="el" href="#ac920cff85655796bc678aba55a237eb1">pBombapHB</a>)</td></tr>
+<tr class="memdesc:ab1cb406c7718e5bc573e8aa4fd9ff877"><td class="mdescLeft">&#160;</td><td class="mdescRight">inicializador de la bomba de phB  <br /></td></tr>
+<tr class="separator:ab1cb406c7718e5bc573e8aa4fd9ff877"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9aa5552eb653c80b95ecf7231bd60cca" id="r_a9aa5552eb653c80b95ecf7231bd60cca"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9aa5552eb653c80b95ecf7231bd60cca">enciendoBombapHA</a> ()</td></tr>
+<tr class="memdesc:a9aa5552eb653c80b95ecf7231bd60cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">enciendo la bomba phA  <br /></td></tr>
+<tr class="separator:a9aa5552eb653c80b95ecf7231bd60cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fd39cc17e45c6f697109eeb425fb713" id="r_a0fd39cc17e45c6f697109eeb425fb713"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fd39cc17e45c6f697109eeb425fb713">enciendoBombapHB</a> ()</td></tr>
+<tr class="memdesc:a0fd39cc17e45c6f697109eeb425fb713"><td class="mdescLeft">&#160;</td><td class="mdescRight">enciendo la bomba phB  <br /></td></tr>
+<tr class="separator:a0fd39cc17e45c6f697109eeb425fb713"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a003db40654ea916cc576d098685a61c1" id="r_a003db40654ea916cc576d098685a61c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a003db40654ea916cc576d098685a61c1">bombasPHApagadas</a> ()</td></tr>
+<tr class="memdesc:a003db40654ea916cc576d098685a61c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">apagos las bombas de ph  <br /></td></tr>
+<tr class="separator:a003db40654ea916cc576d098685a61c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cb9fd8d002cf14936be72ab60800c54" id="r_a2cb9fd8d002cf14936be72ab60800c54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2cb9fd8d002cf14936be72ab60800c54">SensorPHfunc</a> ()</td></tr>
+<tr class="memdesc:a2cb9fd8d002cf14936be72ab60800c54"><td class="mdescLeft">&#160;</td><td class="mdescRight">El sensor de ph en funcionamiento.  <br /></td></tr>
+<tr class="separator:a2cb9fd8d002cf14936be72ab60800c54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a1156856ba32e062fce35c90c6090d1" id="r_a3a1156856ba32e062fce35c90c6090d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a1156856ba32e062fce35c90c6090d1">bombaAGUAAapagada</a> ()</td></tr>
+<tr class="memdesc:a3a1156856ba32e062fce35c90c6090d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">bomba de agua apagada  <br /></td></tr>
+<tr class="separator:a3a1156856ba32e062fce35c90c6090d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95d76f69cf6a01a0da1465c4a55a2777" id="r_a95d76f69cf6a01a0da1465c4a55a2777"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95d76f69cf6a01a0da1465c4a55a2777">encenderBombaAGUA</a> ()</td></tr>
+<tr class="memdesc:a95d76f69cf6a01a0da1465c4a55a2777"><td class="mdescLeft">&#160;</td><td class="mdescRight">enciendo bomba de agua  <br /></td></tr>
+<tr class="separator:a95d76f69cf6a01a0da1465c4a55a2777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91dd216006ff9b5e9974b648fa90f914" id="r_a91dd216006ff9b5e9974b648fa90f914"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">static</a> <a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91dd216006ff9b5e9974b648fa90f914">iniciarTrue</a> ()</td></tr>
+<tr class="memdesc:a91dd216006ff9b5e9974b648fa90f914"><td class="mdescLeft">&#160;</td><td class="mdescRight">comienza a funcionar  <br /></td></tr>
+<tr class="separator:a91dd216006ff9b5e9974b648fa90f914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8fd7ca2f4a26567279809c456bd418b" id="r_ac8fd7ca2f4a26567279809c456bd418b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">static</a> <a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8fd7ca2f4a26567279809c456bd418b">iniciarFalse</a> ()</td></tr>
+<tr class="memdesc:ac8fd7ca2f4a26567279809c456bd418b"><td class="mdescLeft">&#160;</td><td class="mdescRight">deja de funcionar  <br /></td></tr>
+<tr class="separator:ac8fd7ca2f4a26567279809c456bd418b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33edcbe8a620b38abb58f0bcbe7e831e" id="r_a33edcbe8a620b38abb58f0bcbe7e831e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">static</a> <a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33edcbe8a620b38abb58f0bcbe7e831e">medirTask</a> (<a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> *<a class="el" href="#ac920cff85655796bc678aba55a237eb1">vParameter</a>)</td></tr>
+<tr class="separator:a33edcbe8a620b38abb58f0bcbe7e831e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae50655031661ee1605258b09fa500590" id="r_ae50655031661ee1605258b09fa500590"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">static</a> <a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae50655031661ee1605258b09fa500590">uartTaskSend</a> (<a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> *<a class="el" href="#ac920cff85655796bc678aba55a237eb1">vParameter</a>)</td></tr>
+<tr class="memdesc:ae50655031661ee1605258b09fa500590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tarea que permite mandar datos a traves de puerto serie.  <br /></td></tr>
+<tr class="separator:ae50655031661ee1605258b09fa500590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (<a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a>)</td></tr>
+<tr class="separator:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a2c406d0c43430c820c6168d9f8ceb377" id="r_a2c406d0c43430c820c6168d9f8ceb377"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c406d0c43430c820c6168d9f8ceb377">iniciar</a> = 0</td></tr>
+<tr class="memdesc:a2c406d0c43430c820c6168d9f8ceb377"><td class="mdescLeft">&#160;</td><td class="mdescRight">bandera que permite iniciar o parar el programa  <br /></td></tr>
+<tr class="separator:a2c406d0c43430c820c6168d9f8ceb377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3f1aeb79c9346cb9b7f1980fb764a5a" id="r_af3f1aeb79c9346cb9b7f1980fb764a5a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3f1aeb79c9346cb9b7f1980fb764a5a">bombaA</a> = 0</td></tr>
+<tr class="memdesc:af3f1aeb79c9346cb9b7f1980fb764a5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">bandera para ver si esta encenddida la bombaA  <br /></td></tr>
+<tr class="separator:af3f1aeb79c9346cb9b7f1980fb764a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe6b1867bdeb1febd09e4f5c82aac3da" id="r_abe6b1867bdeb1febd09e4f5c82aac3da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe6b1867bdeb1febd09e4f5c82aac3da">bombaB</a> = 0</td></tr>
+<tr class="memdesc:abe6b1867bdeb1febd09e4f5c82aac3da"><td class="mdescLeft">&#160;</td><td class="mdescRight">bandera par aver si esta encencdida la bombaB  <br /></td></tr>
+<tr class="separator:abe6b1867bdeb1febd09e4f5c82aac3da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab394a2325331757de6eae71b16c435e9" id="r_ab394a2325331757de6eae71b16c435e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab394a2325331757de6eae71b16c435e9">humedad</a> = 0</td></tr>
+<tr class="memdesc:ab394a2325331757de6eae71b16c435e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">bandera para ver si necesita agua o no  <br /></td></tr>
+<tr class="separator:ab394a2325331757de6eae71b16c435e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac920cff85655796bc678aba55a237eb1" id="r_ac920cff85655796bc678aba55a237eb1"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">valorAD</a> = 0</td></tr>
+<tr class="memdesc:ac920cff85655796bc678aba55a237eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">variable que indica valor AD de ph  <br /></td></tr>
+<tr class="separator:ac920cff85655796bc678aba55a237eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfafc96e6ab0fcbc46d3896a035bd074" id="r_acfafc96e6ab0fcbc46d3896a035bd074"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">static</a> <a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfafc96e6ab0fcbc46d3896a035bd074">gpioHumedad</a></td></tr>
+<tr class="separator:acfafc96e6ab0fcbc46d3896a035bd074"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2e60774db254b28073bd5fa0f7afa2b" id="r_aa2e60774db254b28073bd5fa0f7afa2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">static</a> <a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2e60774db254b28073bd5fa0f7afa2b">gpioBombaAGUA</a></td></tr>
+<tr class="separator:aa2e60774db254b28073bd5fa0f7afa2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6b9ee745ad5086e6e3fe49e4c3b9a6c" id="r_ad6b9ee745ad5086e6e3fe49e4c3b9a6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">static</a> <a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6b9ee745ad5086e6e3fe49e4c3b9a6c">gpioBombapHA</a></td></tr>
+<tr class="separator:ad6b9ee745ad5086e6e3fe49e4c3b9a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3732bc9cd8edff4f43bacb4b65c52aa" id="r_aa3732bc9cd8edff4f43bacb4b65c52aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">static</a> <a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3732bc9cd8edff4f43bacb4b65c52aa">gpioBombapHB</a></td></tr>
+<tr class="separator:aa3732bc9cd8edff4f43bacb4b65c52aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b0cb40d7a31ce7e8b3f906fd55df312" id="r_a2b0cb40d7a31ce7e8b3f906fd55df312"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">TaskHandle_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b0cb40d7a31ce7e8b3f906fd55df312">medir_task_handle</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:a2b0cb40d7a31ce7e8b3f906fd55df312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a794a3d4eabf5aa8f8450b9830ee7b95b" id="r_a794a3d4eabf5aa8f8450b9830ee7b95b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">TaskHandle_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a794a3d4eabf5aa8f8450b9830ee7b95b">uart_send_handle</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:a794a3d4eabf5aa8f8450b9830ee7b95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de «define»</h2>
+<a id="a31ec4860e371837ce1d199c9c1464915" name="a31ec4860e371837ce1d199c9c1464915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31ec4860e371837ce1d199c9c1464915">&#9670;&#160;</a></span>TIMER1_CONFIG_US</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="#ac920cff85655796bc678aba55a237eb1">define</a> TIMER1_CONFIG_US&#160;&#160;&#160;3000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indica el tiempo en microsegundos del timer1 para trasmitir. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00050">50</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a0d0609f396d7fe51d2c140275d051dd8" name="a0d0609f396d7fe51d2c140275d051dd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d0609f396d7fe51d2c140275d051dd8">&#9670;&#160;</a></span>TIMER2_CONFIG_US</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="#ac920cff85655796bc678aba55a237eb1">define</a> TIMER2_CONFIG_US&#160;&#160;&#160;5000000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Indica el tiempo en microsegundos del timer2 para trasmitir. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00045">45</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de funciones</h2>
+<a id="a630544a7f0a2cc40d8a7fefab7e2fe70" name="a630544a7f0a2cc40d8a7fefab7e2fe70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a630544a7f0a2cc40d8a7fefab7e2fe70">&#9670;&#160;</a></span>app_main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> app_main </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a></td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">277</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="analog__io__mcu_8h_source.html#l00038">ADC_SINGLE</a>, <a class="el" href="analog__io__mcu_8c_source.html#l00045">AnalogInputInit()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00144">BombapHAInit()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00155">BombapHBInit()</a>, <a class="el" href="analog__io__mcu_8h_source.html#l00032">CH1</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00093">FuncTimer1()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00102">FuncTimer2()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00232">iniciarFalse()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00225">iniciarTrue()</a>, <a class="el" href="analog__io__mcu_8h_source.html#l00049">analog_input_config_t::input</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00084">medir_task_handle</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00240">medirTask()</a>, <a class="el" href="ili9341_8c_source.html#l00042">NULL</a>, <a class="el" href="uart__mcu_8h_source.html#l00039">serial_config_t::port</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00111">SensorHumInit()</a>, <a class="el" href="switch_8h_source.html#l00032">SWITCH_1</a>, <a class="el" href="switch_8h_source.html#l00033">SWITCH_2</a>, <a class="el" href="switch_8c_source.html#l00047">SwitchActivInt()</a>, <a class="el" href="switch_8c_source.html#l00029">SwitchesInit()</a>, <a class="el" href="timer__mcu_8h_source.html#l00040">timer_config_t::timer</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00050">TIMER1_CONFIG_US</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00045">TIMER2_CONFIG_US</a>, <a class="el" href="timer__mcu_8h_source.html#l00032">TIMER_A</a>, <a class="el" href="timer__mcu_8h_source.html#l00033">TIMER_B</a>, <a class="el" href="timer__mcu_8c_source.html#l00055">TimerInit()</a>, <a class="el" href="timer__mcu_8c_source.html#l00110">TimerStart()</a>, <a class="el" href="uart__mcu_8h_source.html#l00032">UART_PC</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00085">uart_send_handle</a>, <a class="el" href="uart__mcu_8c_source.html#l00107">UartInit()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00259">uartTaskSend()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00075">valorAD</a>.</p>
+
+</div>
+</div>
+<a id="a3a1156856ba32e062fce35c90c6090d1" name="a3a1156856ba32e062fce35c90c6090d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a1156856ba32e062fce35c90c6090d1">&#9670;&#160;</a></span>bombaAGUAAapagada()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> bombaAGUAAapagada </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>bomba de agua apagada </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00206">206</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioBombaAGUA</a> y <a class="el" href="gpio__mcu_8c_source.html#l00086">GPIOOff()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00213">encenderBombaAGUA()</a>.</p>
+
+</div>
+</div>
+<a id="a0023007b7f9a46d8b672e8a5226b0f73" name="a0023007b7f9a46d8b672e8a5226b0f73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0023007b7f9a46d8b672e8a5226b0f73">&#9670;&#160;</a></span>BombapHAInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">bool</a> BombapHAInit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a></td>          <td class="paramname"><span class="paramname"><em>pbombaHA</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>inicializador de la bomba de phA </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pBombapHA</td><td>es el gpio de la bombaPHA </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00144">144</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="gpio__mcu_8h_source.html#l00043">GPIO_INPUT</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioBombapHA</a> y <a class="el" href="gpio__mcu_8c_source.html#l00067">GPIOInit()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="ab1cb406c7718e5bc573e8aa4fd9ff877" name="ab1cb406c7718e5bc573e8aa4fd9ff877"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1cb406c7718e5bc573e8aa4fd9ff877">&#9670;&#160;</a></span>BombapHBInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">bool</a> BombapHBInit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a></td>          <td class="paramname"><span class="paramname"><em>pBombapHB</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>inicializador de la bomba de phB </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pBombapHA</td><td>es el gpio de la bombaPHB </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00155">155</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="gpio__mcu_8h_source.html#l00043">GPIO_INPUT</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioBombapHB</a> y <a class="el" href="gpio__mcu_8c_source.html#l00067">GPIOInit()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a003db40654ea916cc576d098685a61c1" name="a003db40654ea916cc576d098685a61c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a003db40654ea916cc576d098685a61c1">&#9670;&#160;</a></span>bombasPHApagadas()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> bombasPHApagadas </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>apagos las bombas de ph </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00181">181</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioBombapHA</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioBombapHB</a> y <a class="el" href="gpio__mcu_8c_source.html#l00086">GPIOOff()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00189">SensorPHfunc()</a>.</p>
+
+</div>
+</div>
+<a id="a95d76f69cf6a01a0da1465c4a55a2777" name="a95d76f69cf6a01a0da1465c4a55a2777"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95d76f69cf6a01a0da1465c4a55a2777">&#9670;&#160;</a></span>encenderBombaAGUA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> encenderBombaAGUA </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>enciendo bomba de agua </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00213">213</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00206">bombaAGUAAapagada()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioBombaAGUA</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioHumedad</a>, <a class="el" href="gpio__mcu_8c_source.html#l00081">GPIOOn()</a> y <a class="el" href="gpio__mcu_8c_source.html#l00101">GPIORead()</a>.</p>
+
+</div>
+</div>
+<a id="a9aa5552eb653c80b95ecf7231bd60cca" name="a9aa5552eb653c80b95ecf7231bd60cca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9aa5552eb653c80b95ecf7231bd60cca">&#9670;&#160;</a></span>enciendoBombapHA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> enciendoBombapHA </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>enciendo la bomba phA </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00165">165</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00060">bombaA</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioBombapHA</a> y <a class="el" href="gpio__mcu_8c_source.html#l00081">GPIOOn()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00189">SensorPHfunc()</a>.</p>
+
+</div>
+</div>
+<a id="a0fd39cc17e45c6f697109eeb425fb713" name="a0fd39cc17e45c6f697109eeb425fb713"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fd39cc17e45c6f697109eeb425fb713">&#9670;&#160;</a></span>enciendoBombapHB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> enciendoBombapHB </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>enciendo la bomba phB </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00173">173</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00065">bombaB</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioBombapHB</a> y <a class="el" href="gpio__mcu_8c_source.html#l00081">GPIOOn()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00189">SensorPHfunc()</a>.</p>
+
+</div>
+</div>
+<a id="ae482bea5510eee4a7ed9123e49a7555b" name="ae482bea5510eee4a7ed9123e49a7555b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae482bea5510eee4a7ed9123e49a7555b">&#9670;&#160;</a></span>FuncTimer1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> FuncTimer1 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> *</td>          <td class="paramname"><span class="paramname"><em>param</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00093">93</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00084">medir_task_handle</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a33eb645da46e6817868f0a25d7c4f5d3" name="a33eb645da46e6817868f0a25d7c4f5d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33eb645da46e6817868f0a25d7c4f5d3">&#9670;&#160;</a></span>FuncTimer2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> FuncTimer2 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> *</td>          <td class="paramname"><span class="paramname"><em>param</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00102">102</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00085">uart_send_handle</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="ac8fd7ca2f4a26567279809c456bd418b" name="ac8fd7ca2f4a26567279809c456bd418b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8fd7ca2f4a26567279809c456bd418b">&#9670;&#160;</a></span>iniciarFalse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> iniciarFalse </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>deja de funcionar </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00232">232</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00055">iniciar</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a91dd216006ff9b5e9974b648fa90f914" name="a91dd216006ff9b5e9974b648fa90f914"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91dd216006ff9b5e9974b648fa90f914">&#9670;&#160;</a></span>iniciarTrue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> iniciarTrue </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>comienza a funcionar </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00225">225</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00055">iniciar</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a33edcbe8a620b38abb58f0bcbe7e831e" name="a33edcbe8a620b38abb58f0bcbe7e831e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33edcbe8a620b38abb58f0bcbe7e831e">&#9670;&#160;</a></span>medirTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">static</a> <a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> medirTask </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> *</td>          <td class="paramname"><span class="paramname"><em>vParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00240">240</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00055">iniciar</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00124">SensorHumFunc()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00189">SensorPHfunc()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00075">valorAD</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a194ef8cef81bb52a46a71470a85ea7f4" name="a194ef8cef81bb52a46a71470a85ea7f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a194ef8cef81bb52a46a71470a85ea7f4">&#9670;&#160;</a></span>SensorHumFunc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> SensorHumFunc </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>sensor de humedad en funcionamiento </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00124">124</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioHumedad</a>, <a class="el" href="gpio__mcu_8c_source.html#l00086">GPIOOff()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00081">GPIOOn()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00070">humedad</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00240">medirTask()</a>.</p>
+
+</div>
+</div>
+<a id="a9305787223af2294545eb9e3e568450b" name="a9305787223af2294545eb9e3e568450b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9305787223af2294545eb9e3e568450b">&#9670;&#160;</a></span>SensorHumInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">bool</a> SensorHumInit </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a></td>          <td class="paramname"><span class="paramname"><em>pHumedad</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a></td>          <td class="paramname"><span class="paramname"><em>pBombaAG</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>inicializador del sensor de humedad </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pHumedad</td><td>es el gpio implicado en el sensor </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pBombaAG</td><td>es el gpio implicado en la bomba de agua </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00111">111</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="gpio__mcu_8h_source.html#l00043">GPIO_INPUT</a>, <a class="el" href="gpio__mcu_8h_source.html#l00044">GPIO_OUTPUT</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioBombaAGUA</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">gpioHumedad</a> y <a class="el" href="gpio__mcu_8c_source.html#l00067">GPIOInit()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a2cb9fd8d002cf14936be72ab60800c54" name="a2cb9fd8d002cf14936be72ab60800c54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cb9fd8d002cf14936be72ab60800c54">&#9670;&#160;</a></span>SensorPHfunc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> SensorPHfunc </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>El sensor de ph en funcionamiento. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00189">189</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="analog__io__mcu_8c_source.html#l00105">AnalogInputReadSingle()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00181">bombasPHApagadas()</a>, <a class="el" href="analog__io__mcu_8h_source.html#l00032">CH1</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00165">enciendoBombapHA()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00173">enciendoBombapHB()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00075">valorAD</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00240">medirTask()</a>.</p>
+
+</div>
+</div>
+<a id="ae50655031661ee1605258b09fa500590" name="ae50655031661ee1605258b09fa500590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae50655031661ee1605258b09fa500590">&#9670;&#160;</a></span>uartTaskSend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">static</a> <a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> uartTaskSend </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">void</a> *</td>          <td class="paramname"><span class="paramname"><em>vParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Tarea que permite mandar datos a traves de puerto serie. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vParameter</td><td>puntero tipo void. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00259">259</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00070">humedad</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00055">iniciar</a>, <a class="el" href="uart__mcu_8h_source.html#l00032">UART_PC</a>, <a class="el" href="uart__mcu_8c_source.html#l00222">UartItoa()</a>, <a class="el" href="uart__mcu_8c_source.html#l00193">UartSendString()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00075">valorAD</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de variables</h2>
+<a id="af3f1aeb79c9346cb9b7f1980fb764a5a" name="af3f1aeb79c9346cb9b7f1980fb764a5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3f1aeb79c9346cb9b7f1980fb764a5a">&#9670;&#160;</a></span>bombaA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bombaA = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>bandera para ver si esta encenddida la bombaA </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00060">60</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00165">enciendoBombapHA()</a>.</p>
+
+</div>
+</div>
+<a id="abe6b1867bdeb1febd09e4f5c82aac3da" name="abe6b1867bdeb1febd09e4f5c82aac3da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe6b1867bdeb1febd09e4f5c82aac3da">&#9670;&#160;</a></span>bombaB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bombaB = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>bandera par aver si esta encencdida la bombaB </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00065">65</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00173">enciendoBombapHB()</a>.</p>
+
+</div>
+</div>
+<a id="aa2e60774db254b28073bd5fa0f7afa2b" name="aa2e60774db254b28073bd5fa0f7afa2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2e60774db254b28073bd5fa0f7afa2b">&#9670;&#160;</a></span>gpioBombaAGUA</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a> gpioBombaAGUA</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">80</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00206">bombaAGUAAapagada()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00213">encenderBombaAGUA()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00111">SensorHumInit()</a>.</p>
+
+</div>
+</div>
+<a id="ad6b9ee745ad5086e6e3fe49e4c3b9a6c" name="ad6b9ee745ad5086e6e3fe49e4c3b9a6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6b9ee745ad5086e6e3fe49e4c3b9a6c">&#9670;&#160;</a></span>gpioBombapHA</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a> gpioBombapHA</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">80</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00144">BombapHAInit()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00181">bombasPHApagadas()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00165">enciendoBombapHA()</a>.</p>
+
+</div>
+</div>
+<a id="aa3732bc9cd8edff4f43bacb4b65c52aa" name="aa3732bc9cd8edff4f43bacb4b65c52aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3732bc9cd8edff4f43bacb4b65c52aa">&#9670;&#160;</a></span>gpioBombapHB</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a> gpioBombapHB</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">80</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00155">BombapHBInit()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00181">bombasPHApagadas()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00173">enciendoBombapHB()</a>.</p>
+
+</div>
+</div>
+<a id="acfafc96e6ab0fcbc46d3896a035bd074" name="acfafc96e6ab0fcbc46d3896a035bd074"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfafc96e6ab0fcbc46d3896a035bd074">&#9670;&#160;</a></span>gpioHumedad</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___g_i_o_p.html#ga6baa390d39e68032f8ebed93a7039be1">gpio_t</a> gpioHumedad</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00080">80</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00213">encenderBombaAGUA()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00124">SensorHumFunc()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00111">SensorHumInit()</a>.</p>
+
+</div>
+</div>
+<a id="ab394a2325331757de6eae71b16c435e9" name="ab394a2325331757de6eae71b16c435e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab394a2325331757de6eae71b16c435e9">&#9670;&#160;</a></span>humedad</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">humedad = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>bandera para ver si necesita agua o no </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00070">70</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00124">SensorHumFunc()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00259">uartTaskSend()</a>.</p>
+
+</div>
+</div>
+<a id="a2c406d0c43430c820c6168d9f8ceb377" name="a2c406d0c43430c820c6168d9f8ceb377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c406d0c43430c820c6168d9f8ceb377">&#9670;&#160;</a></span>iniciar</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">iniciar = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>bandera que permite iniciar o parar el programa </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00055">55</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00232">iniciarFalse()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00225">iniciarTrue()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00240">medirTask()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00259">uartTaskSend()</a>.</p>
+
+</div>
+</div>
+<a id="a2b0cb40d7a31ce7e8b3f906fd55df312" name="a2b0cb40d7a31ce7e8b3f906fd55df312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b0cb40d7a31ce7e8b3f906fd55df312">&#9670;&#160;</a></span>medir_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">TaskHandle_t</a> medir_task_handle = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00084">84</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00093">FuncTimer1()</a>.</p>
+
+</div>
+</div>
+<a id="a794a3d4eabf5aa8f8450b9830ee7b95b" name="a794a3d4eabf5aa8f8450b9830ee7b95b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a794a3d4eabf5aa8f8450b9830ee7b95b">&#9670;&#160;</a></span>uart_send_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ac920cff85655796bc678aba55a237eb1">TaskHandle_t</a> uart_send_handle = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00085">85</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a> y <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00102">FuncTimer2()</a>.</p>
+
+</div>
+</div>
+<a id="ac920cff85655796bc678aba55a237eb1" name="ac920cff85655796bc678aba55a237eb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac920cff85655796bc678aba55a237eb1">&#9670;&#160;</a></span>valorAD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">valorAD = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>variable que indica valor AD de ph </p>
+
+<p class="definition">Definición en la línea <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00075">75</a> del archivo <a class="el" href="_parcial_m_a_i_n_8c_source.html">ParcialMAIN.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="analog__io__mcu_8c_source.html#l00045">AnalogInputInit()</a>, <a class="el" href="analog__io__mcu_8c_source.html#l00105">AnalogInputReadSingle()</a>, <a class="el" href="analog__io__mcu_8c_source.html#l00095">AnalogOutputInit()</a>, <a class="el" href="analog__io__mcu_8c_source.html#l00140">AnalogOutputWrite()</a>, <a class="el" href="analog__io__mcu_8c_source.html#l00134">AnalogRaw2mV()</a>, <a class="el" href="servo__sg90_8c_source.html#l00022">Angle2DutyCicle()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00277">app_main()</a>, <a class="el" href="delay__mcu_8c_source.html#l00026">delay_isr()</a>, <a class="el" href="delay__mcu_8c_source.html#l00063">DelayMs()</a>, <a class="el" href="delay__mcu_8c_source.html#l00039">DelaySec()</a>, <a class="el" href="delay__mcu_8c_source.html#l00087">DelayUs()</a>, <a class="el" href="ili9341_8c_source.html#l00260">Fill()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00105">GPIOActivInt()</a>, <a class="el" href="gpio__fast__out__mcu_8c_source.html#l00034">GPIOFastInit()</a>, <a class="el" href="gpio__fast__out__mcu_8c_source.html#l00054">GPIOFastWrite()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00067">GPIOInit()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00119">GPIOInputFilter()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00086">GPIOOff()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00081">GPIOOn()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00101">GPIORead()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00091">GPIOState()</a>, <a class="el" href="gpio__mcu_8c_source.html#l00096">GPIOToggle()</a>, <a class="el" href="hc__sr04_8c_source.html#l00034">HcSr04Init()</a>, <a class="el" href="hc__sr04_8c_source.html#l00045">HcSr04ReadDistanceInCentimeters()</a>, <a class="el" href="hc__sr04_8c_source.html#l00067">HcSr04ReadDistanceInInches()</a>, <a class="el" href="hx711_8c_source.html#l00133">HX711_getUnits()</a>, <a class="el" href="hx711_8c_source.html#l00128">HX711_getValue()</a>, <a class="el" href="hx711_8c_source.html#l00047">HX711_Init()</a>, <a class="el" href="hx711_8c_source.html#l00081">HX711_read()</a>, <a class="el" href="hx711_8c_source.html#l00117">HX711_readAverage()</a>, <a class="el" href="hx711_8c_source.html#l00062">HX711_setGain()</a>, <a class="el" href="hx711_8c_source.html#l00154">HX711_setOffset()</a>, <a class="el" href="hx711_8c_source.html#l00144">HX711_setScale()</a>, <a class="el" href="hx711_8c_source.html#l00138">HX711_tare()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00034">I2C_initialize()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00073">I2C_readBit()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00091">I2C_readBits()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00114">I2C_readByte()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00126">I2C_readBytes()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00260">I2C_readWord()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00153">I2C_SelectRegister()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00172">I2C_writeBit()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00187">I2C_writeBits()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00214">I2C_writeByte()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00236">I2C_writeBytes()</a>, <a class="el" href="i2c__mcu_8c_source.html#l00146">I2C_writeWord()</a>, <a class="el" href="ili9341_8c_source.html#l00380">ILI9341DrawChar()</a>, <a class="el" href="ili9341_8c_source.html#l00580">ILI9341DrawCircle()</a>, <a class="el" href="ili9341_8c_source.html#l00616">ILI9341DrawFilledCircle()</a>, <a class="el" href="ili9341_8c_source.html#l00576">ILI9341DrawFilledRectangle()</a>, <a class="el" href="ili9341_8c_source.html#l00655">ILI9341DrawFilledTriangle()</a>, <a class="el" href="ili9341_8c_source.html#l00438">ILI9341DrawInt()</a>, <a class="el" href="ili9341_8c_source.html#l00499">ILI9341DrawLine()</a>, <a class="el" href="ili9341_8c_source.html#l00769">ILI9341DrawPicture()</a>, <a class="el" href="ili9341_8c_source.html#l00333">ILI9341DrawPixel()</a>, <a class="el" href="ili9341_8c_source.html#l00569">ILI9341DrawRectangle()</a>, <a class="el" href="ili9341_8c_source.html#l00453">ILI9341DrawString()</a>, <a class="el" href="ili9341_8c_source.html#l00649">ILI9341DrawTriangle()</a>, <a class="el" href="ili9341_8c_source.html#l00341">ILI9341Fill()</a>, <a class="el" href="ili9341_8c_source.html#l00486">ILI9341GetStringSize()</a>, <a class="el" href="ili9341_8c_source.html#l00300">ILI9341Init()</a>, <a class="el" href="ili9341_8c_source.html#l00345">ILI9341Rotate()</a>, <a class="el" href="lcditse0803_8c_source.html#l00029">LcdItsE0803BCDtoPin()</a>, <a class="el" href="lcditse0803_8c_source.html#l00054">LcdItsE0803Write()</a>, <a class="el" href="led_8c_source.html#l00065">LedOff()</a>, <a class="el" href="led_8c_source.html#l00046">LedOn()</a>, <a class="el" href="led_8c_source.html#l00113">LedsMask()</a>, <a class="el" href="led_8c_source.html#l00084">LedToggle()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00240">medirTask()</a>, <a class="el" href="mpu6050_8c_source.html#l00044">MPU6050_Address()</a>, <a class="el" href="mpu6050_8c_source.html#l01822">MPU6050_getAcceleration()</a>, <a class="el" href="mpu6050_8c_source.html#l01833">MPU6050_getAccelerationX()</a>, <a class="el" href="mpu6050_8c_source.html#l01842">MPU6050_getAccelerationY()</a>, <a class="el" href="mpu6050_8c_source.html#l01851">MPU6050_getAccelerationZ()</a>, <a class="el" href="mpu6050_8c_source.html#l02011">MPU6050_getExternalSensorByte()</a>, <a class="el" href="mpu6050_8c_source.html#l02029">MPU6050_getExternalSensorDWord()</a>, <a class="el" href="mpu6050_8c_source.html#l02020">MPU6050_getExternalSensorWord()</a>, <a class="el" href="mpu6050_8c_source.html#l02728">MPU6050_getFIFOBytes()</a>, <a class="el" href="mpu6050_8c_source.html#l02692">MPU6050_getFIFOCount()</a>, <a class="el" href="mpu6050_8c_source.html#l01777">MPU6050_getMotion6()</a>, <a class="el" href="mpu6050_8c_source.html#l01761">MPU6050_getMotion9()</a>, <a class="el" href="mpu6050_8c_source.html#l01901">MPU6050_getRotation()</a>, <a class="el" href="mpu6050_8c_source.html#l01912">MPU6050_getRotationX()</a>, <a class="el" href="mpu6050_8c_source.html#l01921">MPU6050_getRotationY()</a>, <a class="el" href="mpu6050_8c_source.html#l01930">MPU6050_getRotationZ()</a>, <a class="el" href="mpu6050_8c_source.html#l00944">MPU6050_getSlaveAddress()</a>, <a class="el" href="mpu6050_8c_source.html#l01091">MPU6050_getSlaveDataLength()</a>, <a class="el" href="mpu6050_8c_source.html#l02164">MPU6050_getSlaveDelayEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00992">MPU6050_getSlaveEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00970">MPU6050_getSlaveRegister()</a>, <a class="el" href="mpu6050_8c_source.html#l01018">MPU6050_getSlaveWordByteSwap()</a>, <a class="el" href="mpu6050_8c_source.html#l01069">MPU6050_getSlaveWordGroupOffset()</a>, <a class="el" href="mpu6050_8c_source.html#l01043">MPU6050_getSlaveWriteMode()</a>, <a class="el" href="mpu6050_8c_source.html#l01862">MPU6050_getTemperature()</a>, <a class="el" href="mpu6050_8c_source.html#l00025">MPU6050_ReadRegister()</a>, <a class="el" href="mpu6050_8c_source.html#l02236">MPU6050_setAccelerometerPowerOnDelay()</a>, <a class="el" href="mpu6050_8c_source.html#l00710">MPU6050_setAccelFIFOEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00313">MPU6050_setAccelXSelfTest()</a>, <a class="el" href="mpu6050_8c_source.html#l00328">MPU6050_setAccelYSelfTest()</a>, <a class="el" href="mpu6050_8c_source.html#l00343">MPU6050_setAccelZSelfTest()</a>, <a class="el" href="mpu6050_8c_source.html#l00081">MPU6050_setAuxVDDIOLevel()</a>, <a class="el" href="mpu6050_8c_source.html#l01517">MPU6050_setClockOutputEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02527">MPU6050_setClockSource()</a>, <a class="el" href="mpu6050_8c_source.html#l00419">MPU6050_setDHPFMode()</a>, <a class="el" href="mpu6050_8c_source.html#l00159">MPU6050_setExternalFrameSync()</a>, <a class="el" href="mpu6050_8c_source.html#l02143">MPU6050_setExternalShadowDelayEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02335">MPU6050_setFIFOEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02275">MPU6050_setFreefallDetectionCounterDecrement()</a>, <a class="el" href="mpu6050_8c_source.html#l00481">MPU6050_setFreefallDetectionDuration()</a>, <a class="el" href="mpu6050_8c_source.html#l00449">MPU6050_setFreefallDetectionThreshold()</a>, <a class="el" href="mpu6050_8c_source.html#l01463">MPU6050_setFSyncInterruptEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01444">MPU6050_setFSyncInterruptLevel()</a>, <a class="el" href="mpu6050_8c_source.html#l00371">MPU6050_setFullScaleAccelRange()</a>, <a class="el" href="mpu6050_8c_source.html#l00237">MPU6050_setFullScaleGyroRange()</a>, <a class="el" href="mpu6050_8c_source.html#l01492">MPU6050_setI2CBypassEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02359">MPU6050_setI2CMasterModeEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01658">MPU6050_setIntDataReadyEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01542">MPU6050_setIntEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01387">MPU6050_setInterruptDrive()</a>, <a class="el" href="mpu6050_8c_source.html#l01406">MPU6050_setInterruptLatch()</a>, <a class="el" href="mpu6050_8c_source.html#l01425">MPU6050_setInterruptLatchClear()</a>, <a class="el" href="mpu6050_8c_source.html#l01618">MPU6050_setIntFIFOBufferOverflowEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01561">MPU6050_setIntFreefallEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01638">MPU6050_setIntI2CMasterEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01580">MPU6050_setIntMotionEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01599">MPU6050_setIntZeroMotionEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00897">MPU6050_setMasterClockSpeed()</a>, <a class="el" href="mpu6050_8c_source.html#l02311">MPU6050_setMotionDetectionCounterDecrement()</a>, <a class="el" href="mpu6050_8c_source.html#l00545">MPU6050_setMotionDetectionDuration()</a>, <a class="el" href="mpu6050_8c_source.html#l00515">MPU6050_setMotionDetectionThreshold()</a>, <a class="el" href="mpu6050_8c_source.html#l00794">MPU6050_setMultiMasterEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00117">MPU6050_setRate()</a>, <a class="el" href="mpu6050_8c_source.html#l00764">MPU6050_setSlave0FIFOEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00746">MPU6050_setSlave1FIFOEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00728">MPU6050_setSlave2FIFOEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00835">MPU6050_setSlave3FIFOEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01127">MPU6050_setSlave4Address()</a>, <a class="el" href="mpu6050_8c_source.html#l01173">MPU6050_setSlave4Enabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01194">MPU6050_setSlave4InterruptEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01242">MPU6050_setSlave4MasterDelay()</a>, <a class="el" href="mpu6050_8c_source.html#l01146">MPU6050_setSlave4Register()</a>, <a class="el" href="mpu6050_8c_source.html#l00955">MPU6050_setSlaveAddress()</a>, <a class="el" href="mpu6050_8c_source.html#l01102">MPU6050_setSlaveDataLength()</a>, <a class="el" href="mpu6050_8c_source.html#l02176">MPU6050_setSlaveDelayEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l01003">MPU6050_setSlaveEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02118">MPU6050_setSlaveOutputByte()</a>, <a class="el" href="mpu6050_8c_source.html#l00857">MPU6050_setSlaveReadWriteTransitionEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00981">MPU6050_setSlaveRegister()</a>, <a class="el" href="mpu6050_8c_source.html#l01029">MPU6050_setSlaveWordByteSwap()</a>, <a class="el" href="mpu6050_8c_source.html#l01080">MPU6050_setSlaveWordGroupOffset()</a>, <a class="el" href="mpu6050_8c_source.html#l01054">MPU6050_setSlaveWriteMode()</a>, <a class="el" href="mpu6050_8c_source.html#l02434">MPU6050_setSleepEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02584">MPU6050_setStandbyXAccelEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02641">MPU6050_setStandbyXGyroEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02603">MPU6050_setStandbyYAccelEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02660">MPU6050_setStandbyYGyroEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02622">MPU6050_setStandbyZAccelEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02679">MPU6050_setStandbyZGyroEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00637">MPU6050_setTempFIFOEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02483">MPU6050_setTempSensorEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00817">MPU6050_setWaitForExternalSensorEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02455">MPU6050_setWakeCycleEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02564">MPU6050_setWakeFrequency()</a>, <a class="el" href="mpu6050_8c_source.html#l00655">MPU6050_setXGyroFIFOEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00673">MPU6050_setYGyroFIFOEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l00616">MPU6050_setZeroMotionDetectionDuration()</a>, <a class="el" href="mpu6050_8c_source.html#l00585">MPU6050_setZeroMotionDetectionThreshold()</a>, <a class="el" href="mpu6050_8c_source.html#l00691">MPU6050_setZGyroFIFOEnabled()</a>, <a class="el" href="mpu6050_8c_source.html#l02366">MPU6050_switchSPIEnabled()</a>, <a class="el" href="neopixel__stripe_8c_source.html#l00055">NeoPixelAllColor()</a>, <a class="el" href="neopixel__stripe_8c_source.html#l00044">NeoPixelAllOff()</a>, <a class="el" href="neopixel__stripe_8c_source.html#l00101">NeoPixelBrightness()</a>, <a class="el" href="neopixel__stripe_8c_source.html#l00119">NeoPixelHSV2Color()</a>, <a class="el" href="neopixel__stripe_8c_source.html#l00038">NeoPixelInit()</a>, <a class="el" href="neopixel__stripe_8c_source.html#l00106">NeoPixelRainbow()</a>, <a class="el" href="neopixel__stripe_8c_source.html#l00067">NeoPixelSetArray()</a>, <a class="el" href="neopixel__stripe_8c_source.html#l00062">NeoPixelSetPixel()</a>, <a class="el" href="neopixel__stripe_8c_source.html#l00082">NeoPixelShift()</a>, <a class="el" href="pwm__mcu_8c_source.html#l00158">PWMDeinit()</a>, <a class="el" href="pwm__mcu_8c_source.html#l00039">PWMInit()</a>, <a class="el" href="pwm__mcu_8c_source.html#l00098">PWMOff()</a>, <a class="el" href="pwm__mcu_8c_source.html#l00081">PWMOn()</a>, <a class="el" href="pwm__mcu_8c_source.html#l00115">PWMSetDutyCycle()</a>, <a class="el" href="pwm__mcu_8c_source.html#l00140">PWMSetFreq()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00189">SensorPHfunc()</a>, <a class="el" href="servo__sg90_8c_source.html#l00033">ServoInit()</a>, <a class="el" href="servo__sg90_8c_source.html#l00051">ServoMove()</a>, <a class="el" href="ili9341_8c_source.html#l00238">SetCursorPosition()</a>, <a class="el" href="hx711_8c_source.html#l00029">shiftIn()</a>, <a class="el" href="spi__mcu_8c_source.html#l00059">SpiInit()</a>, <a class="el" href="spi__mcu_8c_source.html#l00105">SpiRead()</a>, <a class="el" href="spi__mcu_8c_source.html#l00184">SpiReadWrite()</a>, <a class="el" href="spi__mcu_8c_source.html#l00145">SpiWrite()</a>, <a class="el" href="switch_8c_source.html#l00047">SwitchActivInt()</a>, <a class="el" href="switch_8c_source.html#l00038">SwitchesRead()</a>, <a class="el" href="timer__mcu_8c_source.html#l00055">TimerInit()</a>, <a class="el" href="timer__mcu_8c_source.html#l00138">TimerReset()</a>, <a class="el" href="timer__mcu_8c_source.html#l00110">TimerStart()</a>, <a class="el" href="timer__mcu_8c_source.html#l00124">TimerStop()</a>, <a class="el" href="uart__mcu_8c_source.html#l00073">uart_conn_event_task()</a>, <a class="el" href="uart__mcu_8c_source.html#l00040">uart_pc_event_task()</a>, <a class="el" href="uart__mcu_8c_source.html#l00107">UartInit()</a>, <a class="el" href="uart__mcu_8c_source.html#l00222">UartItoa()</a>, <a class="el" href="uart__mcu_8c_source.html#l00161">UartReadBuffer()</a>, <a class="el" href="uart__mcu_8c_source.html#l00142">UartReadByte()</a>, <a class="el" href="uart__mcu_8c_source.html#l00209">UartSendBuffer()</a>, <a class="el" href="uart__mcu_8c_source.html#l00180">UartSendByte()</a>, <a class="el" href="uart__mcu_8c_source.html#l00193">UartSendString()</a>, <a class="el" href="_parcial_m_a_i_n_8c_source.html#l00259">uartTaskSend()</a>, <a class="el" href="ws2812b_8c_source.html#l00329">ws2812bGammaCorrection()</a>, <a class="el" href="ws2812b_8c_source.html#l00340">ws2812bSend()</a>, <a class="el" href="ws2812b_8c_source.html#l00050">ws2812bSendHigh()</a> y <a class="el" href="ws2812b_8c_source.html#l00189">ws2812bSendLow()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_cf4b6b7075db4fc8c75ff55d7a1c5c5d.html">Main-1C-2024</a></li><li class="navelem"><a class="el" href="dir_c39fdeda11f452fa020559819f321a3b.html">firmware</a></li><li class="navelem"><a class="el" href="dir_1dd3f5c35aebf45eaf399eb9c871a064.html">projects</a></li><li class="navelem"><a class="el" href="dir_5844e65c5e8727e2daa57802d7a6a795.html">ParcialMAIN</a></li><li class="navelem"><a class="el" href="dir_5269fa241b731a65f39db7a0ba20cb37.html">main</a></li><li class="navelem"><a class="el" href="_parcial_m_a_i_n_8c.html">ParcialMAIN.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>
