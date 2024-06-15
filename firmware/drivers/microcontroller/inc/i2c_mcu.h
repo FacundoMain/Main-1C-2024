@@ -165,6 +165,26 @@ bool I2C_writeBytes(uint8_t devAddr, uint8_t regAddr, uint8_t length, uint8_t *d
  */
 void I2C_SelectRegister(uint8_t devAddr, uint8_t reg);
 
+/**
+ * @brief 
+ * 
+ * @param devAddr 
+ * @param regAddr 
+ * @return true 
+ * @return false 
+ */
+bool I2C_writeREG(uint8_t devAddr, uint8_t regAddr);
+
+/**
+ * @brief 
+ * 
+ * @param devAddr 
+ * @param length 
+ * @param data 
+ * @param timeout 
+ * @return int8_t 
+ */
+int8_t I2C_requestBytes(uint8_t devAddr, uint8_t length, uint8_t *data, uint16_t timeout);
 /** @} doxygen end group definition */
 /** @} doxygen end group definition */
 /** @} doxygen end group definition */

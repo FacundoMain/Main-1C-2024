@@ -24,42 +24,62 @@
 /*==================[inclusions]=============================================*/
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 #include <stdbool.h>
+#include <math.h>
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include <max3010x.h>
-#include <spo2_algorithm.h>
-#include <math.h>
+#include "max3010x.h"
+#include "spo2_algorithm.h"
 #include "switch.h"
 #include "timer_mcu.h"
 #include "analog_io_mcu.h"
+#include "ble_mcu.h"
+#include "led.h"
+
 /*==================[macros and definitions]=================================*/
 
 #define MAX_PEAKS 40
-#define BUFFER_SIZE_DATA 2000
-#define SAMPLE_FREQ 100
+//#define BUFFER_SIZE 256
+#define DURACION 20
+#define SAMPLE_FREQ 25  // 25 muestras por segundo
+#define BUFFER_SIZE (SAMPLE_FREQ * DURACION) //2400 corresponde a 24 segundos
 
-uint16_t temperatura;
+
+#define CONFIG_SENSOR_DELAY 24000  //ver con ejemplos anteriores cuanto poner aca para equivalga a 24 segs
+#define CONFIG_TIMER1_US 1000  //timer cada un segundo usado para temperatura
+#define CONFIG_PROCES_DELAY 500 // es en mili segundos, esto equivale a 0.5s
+#define CONFIG_BLINK_PERIOD 500
+#define CONFIG_MAX_DELAY 4000  
+#define LED_BT LED_1
+
+float temperaturaProm = 0.0;
+int diferenciaTemp = 0;
 float HRV = 0.0;
+int8_t temperaturaVect[24];
+uint16_t temp_inst = 0;
+
 bool estresHRV = false;
-bool estresTemp = false;
-bool estresTotal = false;
+bool fiebre = false;
 bool iniciar = false;
 
 int32_t peak_intervals[MAX_PEAKS];  //almacena intervalos entre picos de señal ppg
 int32_t peak_count = 0;  //contador de picos se señal ppg
 
-uint32_t irBuffer[BUFFER_SIZE_DATA]; //infrared LED sensor data
-int32_t bufferLength=BUFFER_SIZE_DATA; //data length
+uint32_t irBuffer[BUFFER_SIZE]; //infrared LED sensor data
+int32_t bufferLength=BUFFER_SIZE; //data length
 int32_t heartRate; //heart rate value
-int8_t validHeartRate; //indicator to show if the heart rate calculation is valid
+int8_t validHeartRate ; //indicator to show if the heart rate calculation is valid
+
+uint8_t entradaBle ;
 
 /*==================[internal data definition]===============================*/
 
 TaskHandle_t utilizarSensor_task_handle = NULL;
 TaskHandle_t medirTemperatura_task_handle = NULL;
-TaskHandle_t detectarNivelEstres_task_handle = NULL;
-TaskHandle_t transmitirDato_task_handle = NULL;
+TaskHandle_t procesamientoDatos_task_handle = NULL;
+TaskHandle_t transmitirDatos_task_handle = NULL;
 
 
 /*==================[internal functions declaration]=========================*/
@@ -68,25 +88,30 @@ static void cambia_iniciar (){
 	iniciar =! iniciar;
 }
 
+void FuncTimer1 (void *param){
+	vTaskNotifyGiveFromISR (medirTemperatura_task_handle, pdFALSE);
+}
+
+void read_ble ( uint8_t *data, uint8_t length){  //funcion igual que en ejemplos
+	if (data[0] == 'A' || data[0] == 'a'){
+		cambia_iniciar();
+	}
+}
 void utilizarSensorTask (void *vParameter){
 	while (true){
 		if (iniciar) {
-			uint8_t i;
-			for (i = 25; i < BUFFER_SIZE_DATA; i++)
-			{
-				irBuffer[i - 25] = irBuffer[i];
-			}
+		uint32_t sample_count = 0;
+			while (sample_count < BUFFER_SIZE){
 
-			//take 25 sets of samples before calculating the heart rate.
-			for ( i = BUFFER_SIZE_DATA - 25 ; i < BUFFER_SIZE_DATA ; i++)
-			{
-				while (MAX3010X_available() == false) //do we have new data?
-					MAX3010X_check(); //Check the sensor for new data
-				
-				irBuffer[i] = MAX3010X_getIR();
-				MAX3010X_nextSample(); //We're finished with this sample so move to next sample        
+				while (MAX3010X_available() == false)
+					MAX3010X_check();
 
+				irBuffer[BUFFER_SIZE] = MAX3010X_getIR();
+				MAX3010X_nextSample();
+
+				sample_count++;
 			}
+			vTaskDelay (CONFIG_MAX_DELAY / portTICK_PERIOD_MS);
 		}
 	}
 }
@@ -95,7 +120,7 @@ void calculointervalos (uint32_t *pun_ir_buffer, int32_t n_ir_buffer_length, int
 
 	uint32_t un_ir_mean;  
 	int32_t k;
-	int32_t i, n_exact_ir_valley_locs_count;
+	//int32_t i, n_exact_ir_valley_locs_count;
 	int32_t n_th1, n_npks;
 	int32_t an_ir_valley_locs[40] ;
 	int32_t n_peak_interval_sum;
@@ -151,72 +176,178 @@ void calculointervalos (uint32_t *pun_ir_buffer, int32_t n_ir_buffer_length, int
 }
 
 
-void medirVariabilidad (void *vParameter){
+void calculoVariabilidad (void){
 	// se usa la desviacion estandar de los intervalos RR (SDNN)
-	if (iniciar){
-		calculointervalos(irBuffer, bufferLength, &heartRate, &validHeartRate);
+	
+	//calculointervalos(irBuffer, bufferLength, &heartRate, &validHeartRate);
 		//if (peak_count < 2) // No suficiente datos
 		//return -1;
 		//; 
 
-  		float mean = 0.0;
-  		for (int i = 0; i < peak_count; i++) {
-    		mean += peak_intervals[i];
-  		}
-  		mean /= peak_count;
-
-  		for (int i = 0; i < peak_count; i++) {
-    		HRV += pow(peak_intervals[i] - mean, 2);
-  		}
-
-  		HRV /= (peak_count - 1);
-		HRV = sqrt(HRV);
+  	float mean = 0.0;
+  	for (int i = 0; i < peak_count; i++) {
+    	mean += peak_intervals[i];
+  	}
+  	mean /= peak_count;
+  	for (int i = 0; i < peak_count; i++) {
+   		HRV += pow(peak_intervals[i] - mean, 2);
 	}
+
+	HRV /= (peak_count - 1);
+	HRV = sqrt(HRV);
 	
 }
 
 void medirTemperaturaTask (void *vParameter){
 	while (true){
-		AnalogInputReadSingle (CH1, &temperatura);
+		if (iniciar){
+		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+		int temp_count = 0;
+
+		AnalogInputReadSingle (CH1, &temp_inst);  //lectura temperatura instantanea.
+		temperaturaVect[temp_count] = temp_inst;
+
+		if (temp_count == 24 || temp_count > 24){
+			temp_count = 0;
+		}
+		else ++temp_count;
+
+		}
+		
 	}
 	
 }
 
-void detectarNivelEstresTask (void *vParameter){
+void calculoTemperaturaProm (int8_t *vecTemp){
+	int elementosVector = 24;
+	int suma = 0;
+	int diferenciaaux = 0;
 
-	while (true) {
-		
+	for (int i = 1; i < elementosVector ; i++){
+		diferenciaaux = vecTemp[i] - vecTemp[i-1];
+		if (diferenciaaux > diferenciaTemp){
+			diferenciaTemp = diferenciaaux;
+		}
+	}
+
+	for (int i = 0; i < elementosVector ; i++){
+		suma += vecTemp[i];
+	}
+	//temperaturaProm = temperaturaProm 
+	temperaturaProm = temperaturaProm / 100; 
+	temperaturaProm = suma/elementosVector;
+}
+
+void procesamientoDatosTask (void *vParameter){
+	while(true){
 		if (iniciar){
+			calculointervalos(irBuffer, bufferLength, &heartRate, &validHeartRate);
+			calculoVariabilidad();
+			calculoTemperaturaProm (temperaturaVect);
 
 			if (HRV < 25){
 				estresHRV = true;
 			}
 			else estresHRV = false;
-			if (temperatura < 3700){
-				estresTemp = true;
+			if (diferenciaTemp > 1500){  //1500 equivale a 1,5°c
+				fiebre = true;
 			}
-			else estresTemp = false;
-
-			if (estresHRV && estresTemp){
-				estresTotal = true;
-			}
+			else fiebre = false;
+		
 		}
+		vTaskDelay (CONFIG_PROCES_DELAY / portTICK_PERIOD_MS);
 	}
-			
+
 }
 
-void transmitirDatoTask (void *vParameter){
+void transmitirDatosTask (void *vParameter){
+	while (true) {
+		if (iniciar){
+			/*	logica para que se envien los datos via bluetooth
+			deberia enviar mensajes de si necesita ejercicios de respiracion
+			y el nivel de temperatura (temperaturaprom)
+			*/
+			char msg[48];
+			sprintf (msg, "*T%.1f", temperaturaProm);  //envio un valor despues de la coma
+			if (fiebre){
+				sprintf (msg, "*fTemperatura promedio elevada");
+				BleSendString(msg);
+				sprintf (msg, "*gPuede ser que hayas tenido fiebre");
+				BleSendString(msg);
+			}
+			else {
+				sprintf (msg, "*fTemperatura promedio normal");
+				BleSendString(msg);
+			}
+			if (estresHRV){
+				sprintf (msg, "*pPareces estar estresado, realiza esto:");  //23 carac
+				BleSendString(msg);
+				sprintf (msg, "*sInhalar 4 segundos");
+				BleSendString(msg);
+				sprintf (msg, "*tMantener 4 segundos");
+				BleSendString(msg);
+				sprintf (msg, "*cExhalar. Esperar 4 segundos y repetir");
+				BleSendString(msg);
+				sprintf (msg, "*qRealizarlo por 5 minutos");
+				BleSendString(msg);
+			}
+			else {
+				sprintf (msg, "*pNo estas bajo estres agudo");
+				BleSendString(msg);
+				sprintf (msg, "*sPodes seguir en lo tuyo..");
+				BleSendString(msg);
+			}
+			vTaskDelay (CONFIG_PROCES_DELAY / portTICK_PERIOD_MS);
+		}
 
+	}
 
 }
 
 /*==================[external functions definition]==========================*/
 void app_main(void){
 	
+	ble_config_t ble_configuration = {
+		"ESP_EDU_FACUM",
+		read_ble
+	};
 	MAX3010X_begin();
 	MAX3010X_setup(30, 1, 2, SAMPLE_FREQ, 69, 4096);
 	SwitchesInit();
+	LedsInit();
+	BleInit(&ble_configuration);
 
-	SwitchActivInt (SWITCH_1, &cambia_iniciar, NULL);
+	timer_config_t timer1 = {
+		.timer = TIMER_A,
+		.period = CONFIG_TIMER1_US,
+		.func_p = FuncTimer1,
+		.param_p = NULL
+	};
+	TimerInit (&timer1);
+
+	xTaskCreate (&utilizarSensorTask, "SENSORMAX", 512, NULL, 5, &utilizarSensor_task_handle);
+	xTaskCreate (&medirTemperaturaTask, "TEMP", 512, NULL, 5, &medirTemperatura_task_handle);
+	xTaskCreate (&procesamientoDatosTask, "DATOS", 512, NULL, 5, &procesamientoDatos_task_handle);
+	xTaskCreate (&transmitirDatosTask, "ENVIO", 512, NULL, 5, &transmitirDatos_task_handle);
+
+
+	TimerStart (timer1.timer);
+
+	while(1){
+        vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
+        switch(BleStatus()){
+            case BLE_OFF:
+                LedOff(LED_BT);
+            break;
+            case BLE_DISCONNECTED:
+                LedToggle(LED_BT);
+            break;
+            case BLE_CONNECTED:
+                LedOn(LED_BT);
+            break;
+        }
+    }
+
+	SwitchActivInt (SWITCH_1, &cambia_iniciar, NULL); //esto en realidad hacerlo con el bluetooth
 }
 /*==================[end of file]============================================*/
