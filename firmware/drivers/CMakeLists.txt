@@ -33,4 +33,4 @@ set(includes "microcontroller/inc"
 
 idf_component_register(SRCS ${srcs}
                        INCLUDE_DIRS ${includes}
-                       REQUIRES driver esp_adc)
+                       REQUIRES driver esp_adc nvs_flash bt)

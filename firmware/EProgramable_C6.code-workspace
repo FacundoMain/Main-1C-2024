@@ -17,6 +17,42 @@
         },
         {
             "path": "projects/guia1_ej2"
+        },
+        {
+            "path": "projects/guia1-ej3"
+        },
+        {
+            "path": "projects/guia1_ej4"
+        },
+        {
+            "path": "projects/guia1_ej51"
+        },
+        {
+            "path": "projects/guia1_ej6"
+        },
+        {
+            "path": "projects/guia2_ej1"
+        },
+        {
+            "path": "projects/guia2_ej2"
+        },
+        {
+            "path": "projects/guia2_ej3"
+        },
+        {
+            "path": "projects/guia2_ej4"
+        },
+        {
+            "path": "projects/proyectoIntegradorMain"
+        },
+        {
+            "path": "projects/pruebasPI"
+        },
+        {
+            "path": "projects/ParcialMAIN"
+        },
+        {
+            "path": "projects/ejmax30102"
         }
     ],
     "settings": {
@@ -71,7 +107,8 @@
             "ili9341.h": "c",
             "soc_caps.h": "c",
             "mpu6050.h": "c",
-            "i2c_mcu.h": "c"
+            "i2c_mcu.h": "c",
+            "gpio_filter.h": "c"
         },
     },
     "tasks": {

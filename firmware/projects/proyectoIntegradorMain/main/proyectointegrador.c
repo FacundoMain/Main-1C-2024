@@ -1,7 +1,16 @@
 /*! @mainpage Proyecto Integrador
  *
  * @section genDesc General Description
- *
+ *		Medidor de estrés y temperatura.
+ *	Mediante sensor MAX30102 se medira el pulso de la sangre, con esto se calculara
+ *  la variablidad de la frecuencia cardíaca (HRV) entre latidos. Este parametro nos da informacion
+ * sobre el estado del sistema nervioso autonómico, que midiendo en reposo, puede ser un indicador 
+ * del estado de estres de la persona. Además con el LM35 se medirá la temperatura corporal, en esta 
+ * aplicacion se hara cada un segundo, sin embargo a modo de idea, se mediría cada una hora, y 
+ * se realizarán calculos sobre temperatura promedio y diferencias de temperatura entre cada elemento.
+ * Luego, con estos parametros mediante comunicacion Bluetooth, se informará la temperatura promedio 
+ * y una posible fiebre; también se informará si la persona esta bajo estrés o no, indicando
+ * ejercicios de respiración para disminuirlo.
  * 	
  *
  * @section hardConn Hardware Connection
@@ -15,7 +24,7 @@
  *
  * |   Date	    | Description                                    |
  * |:----------:|:-----------------------------------------------|
- * | 12/09/2023 | Document creation		                         |
+ * | 16/05/2024 | Document creation		                         |
  *
  * @author Facundo Main (facundo.main@ingenieria.uner.edu.ar)
  *
@@ -40,38 +49,134 @@
 
 /*==================[macros and definitions]=================================*/
 
+/** @def MAX_PEAKS 
+ * @brief indica el tamaño del vector de picos
+*/
 #define MAX_PEAKS 40
-//#define BUFFER_SIZE 256
+
+/** @def DURACION
+ * @brief tiempo en segundos que dura la medicion del sensor MAX30102
+*/
 #define DURACION 20
-#define SAMPLE_FREQ 25  // 25 muestras por segundo
-#define BUFFER_SIZE (SAMPLE_FREQ * DURACION) //2400 corresponde a 24 segundos
 
+/** @def SAMPLE_FREQ
+ * @brief frecuencia de muestreo de sensor MAX30102
+*/
+#define SAMPLE_FREQ 25  // 25 muestras por segundos
 
-#define CONFIG_SENSOR_DELAY 24000  //ver con ejemplos anteriores cuanto poner aca para equivalga a 24 segs
-#define CONFIG_TIMER1_US 1000  //timer cada un segundo usado para temperatura
+/** @def BUFFER_SIZE
+ * @brief indica la cantidad de muestras que voy a tener
+*/
+#define BUFFER_SIZE (SAMPLE_FREQ * DURACION) 
+
+/** @def CONFIG_TIMER1_US
+ * @brief Tiempo en microsegundos que se da el timer1
+*/
+#define CONFIG_TIMER1_US 1000000  //timer cada un segundo usado para temperatura
+
+/** @def CONFIG_PROCES_DELAY
+ * @brief tiempo en milisegundos de delay luego del procesamiento de datos
+*/
 #define CONFIG_PROCES_DELAY 500 // es en mili segundos, esto equivale a 0.5s
+
+/** @def CONFIG_BLINK_PERIOD
+ * @brief Periodo de parpadeo del led
+*/
 #define CONFIG_BLINK_PERIOD 500
+
+/** @def CONFIG_MAX_DELAY
+ * @brief Delay luego del uso del sensor MAX30102
+*/
 #define CONFIG_MAX_DELAY 4000  
+
+/** @def LED_BT
+ * @brief Led que va a parpadear cuando se conecte el bluetooth.
+*/
 #define LED_BT LED_1
 
-float temperaturaProm = 0.0;
-int diferenciaTemp = 0;
+/** @var HRV
+ * @brief Variable que indica en milisegundos la variabilidad de la frecuencia cardíaca.
+*/
 float HRV = 0.0;
+
+/** @var temperaturaPROM
+ * @brief variable que indica la temperatura promedio
+*/
+float temperaturaProm = 0.0;
+
+/** @var diferenciaTemp
+ * @brief indica la diferencia entre dos temperaturas sucesivas
+*/
+int diferenciaTemp = 0;
+
+/** @var temperaturaVECT[]
+ * @brief vector donde se almacenan los valores de temperatura
+*/
 int8_t temperaturaVect[24];
+
+/** @var temp_inst
+ * @brief valor de temperatura instantanea que mido con el sensor
+*/
 uint16_t temp_inst = 0;
 
-bool estresHRV = false;
+/** @var temp_count
+ * @brief contador utilizado para calculos en vector temperatura.
+*/
+int temp_count = 0; 
+
+/** @var estresALTO
+ * @brief booliano que indica si esta muy estresado
+*/
+bool estresALTO = false;
+
+/** @var estresMEDIO
+ *  @brief booliano que indica si esta un poco estresado
+ */
+bool estresMEDIO = false;
+
+/** @var fiebre
+ * @brief booliano que indica si la persona pudo haber tenido fiebre
+*/
 bool fiebre = false;
+
+/** @var iniciar
+ * @brief bandera que indica si se inicia la medicion
+*/
 bool iniciar = false;
 
+/** @var peak_intervals[]
+ * @brief vector que almacena los intervalos entre los picos de la señal ppg
+*/
 int32_t peak_intervals[MAX_PEAKS];  //almacena intervalos entre picos de señal ppg
+
+/** @var peak_count
+ * @brief contador de picos de la señal ppg
+*/
 int32_t peak_count = 0;  //contador de picos se señal ppg
 
+/** @var irBuffer
+ * @brief vector donde se almacenan los datos del sensorMAX30102
+*/
 uint32_t irBuffer[BUFFER_SIZE]; //infrared LED sensor data
+
+/** @var bufferLength
+ * @brief cantidad de muestras
+*/
 int32_t bufferLength=BUFFER_SIZE; //data length
+
+/** @var heartRate
+ * @brief valor de frecuencia cardiaca
+*/
 int32_t heartRate; //heart rate value
+
+/** @var validHeartRate
+ * @brief indicador que muestra si el calculo de la frecuencia cardiaca es valido.
+*/
 int8_t validHeartRate ; //indicator to show if the heart rate calculation is valid
 
+/** @var entradaBle
+ * @brief Entrada de datos bluetooth
+*/
 uint8_t entradaBle ;
 
 /*==================[internal data definition]===============================*/
@@ -84,19 +189,36 @@ TaskHandle_t transmitirDatos_task_handle = NULL;
 
 /*==================[internal functions declaration]=========================*/
 
+/** @fn static void cambia_Iniciar ()
+* @brief Funcion que cambia la bandera iniciar.
+*/
 static void cambia_iniciar (){
 	iniciar =! iniciar;
 }
 
+/** @fn void FuncTimer1 (void *param)
+* @brief Funcion que cambia la bandera iniciar.
+* @param[in] param puntero tipo void 
+*/
 void FuncTimer1 (void *param){
 	vTaskNotifyGiveFromISR (medirTemperatura_task_handle, pdFALSE);
 }
 
-void read_ble ( uint8_t *data, uint8_t length){  //funcion igual que en ejemplos
+/** @fn void read_ble ( uint8_t *data, uint8_t length)
+* @brief Funcion que permite lectura de datos transmitidos desde otro dispositivo via bluetooth.
+* @param[in] data Puntero a array de datos recibidos
+* @param[in] length Longitud del array de datos recibidos
+*/
+void read_ble ( uint8_t *data, uint8_t length){ 
 	if (data[0] == 'A' || data[0] == 'a'){
 		cambia_iniciar();
 	}
 }
+
+/** @fn utilizarSensorTask (void *vParameter)
+ *  @brief Tarea que realiza uso de sensorMAX30102
+ *  @param[in] vParameter puntero tipo void
+ */
 void utilizarSensorTask (void *vParameter){
 	while (true){
 		if (iniciar) {
@@ -106,8 +228,8 @@ void utilizarSensorTask (void *vParameter){
 				while (MAX3010X_available() == false)
 					MAX3010X_check();
 
-				irBuffer[BUFFER_SIZE] = MAX3010X_getIR();
-				MAX3010X_nextSample();
+				irBuffer[sample_count] = MAX3010X_getIR();
+				MAX3010X_nextSample(); 
 
 				sample_count++;
 			}
@@ -116,6 +238,13 @@ void utilizarSensorTask (void *vParameter){
 	}
 }
 
+/** @fn void calculoIntervalos (uint32_t *pun_ir_buffer, int32_t n_ir_buffer_length, int32_t *pn_heart_rate, int8_t *pch_hr_valid)
+ *  @brief Funcion que realiza el calculo de los intervalos de tiempo 
+ * @param[in] pun_ir_buffer Puntero a array de datos
+ * @param[in] n_ir_buffer_length Longitud de array de datos
+ * @param[in] pn_heart_rate Puntero a variable de frecuencia cardiaca
+ * @param[in] pch_hr_valid Puntero a valor de frecuencia cardiaca valido
+ */
 void calculointervalos (uint32_t *pun_ir_buffer, int32_t n_ir_buffer_length, int32_t *pn_heart_rate, int8_t *pch_hr_valid){
 
 	uint32_t un_ir_mean;  
@@ -175,7 +304,9 @@ void calculointervalos (uint32_t *pun_ir_buffer, int32_t n_ir_buffer_length, int
   }
 }
 
-
+/** @fn calculoVariabilidad ()
+ * @brief Funcion que calcula la variabilidad de la frecuencia cardíaca
+ */
 void calculoVariabilidad (void){
 	// se usa la desviacion estandar de los intervalos RR (SDNN)
 	
@@ -198,11 +329,14 @@ void calculoVariabilidad (void){
 	
 }
 
+/** @fn medirTemperaturaTask (void *vParameter)
+ *  @brief Tarea que realiza la medicion de la temperatura con el sensor LM35
+ * @param[in] vParameter Puntero tipo void
+ */
 void medirTemperaturaTask (void *vParameter){
 	while (true){
 		if (iniciar){
 		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-		int temp_count = 0;
 
 		AnalogInputReadSingle (CH1, &temp_inst);  //lectura temperatura instantanea.
 		temperaturaVect[temp_count] = temp_inst;
@@ -218,6 +352,11 @@ void medirTemperaturaTask (void *vParameter){
 	
 }
 
+/** @fn calculoTemperaturaProm
+ *  @brief Funcion que calcula la temperatura promedio y la diferencia entre
+ * 	temperaturas sucesivas
+ * @param[in] vecTemp Puntero a array de datos de temperatura
+ */
 void calculoTemperaturaProm (int8_t *vecTemp){
 	int elementosVector = 24;
 	int suma = 0;
@@ -238,6 +377,11 @@ void calculoTemperaturaProm (int8_t *vecTemp){
 	temperaturaProm = suma/elementosVector;
 }
 
+/** @fn procesamientoDatosTask(void *vParameter)
+ *  @brief Tarea que realiza el procesamiento de los datos de temperatura 
+ *  y de la señal ppg
+ *  @param[in] vParameter puntero tipo void
+ */
 void procesamientoDatosTask (void *vParameter){
 	while(true){
 		if (iniciar){
@@ -246,9 +390,16 @@ void procesamientoDatosTask (void *vParameter){
 			calculoTemperaturaProm (temperaturaVect);
 
 			if (HRV < 25){
-				estresHRV = true;
+				estresALTO = true;
 			}
-			else estresHRV = false;
+			else if (HRV > 25 && HRV < 50) {
+				estresMEDIO = true;
+			} 
+			else {
+				estresALTO = false;
+				estresMEDIO = false;
+			}
+
 			if (diferenciaTemp > 1500){  //1500 equivale a 1,5°c
 				fiebre = true;
 			}
@@ -260,6 +411,10 @@ void procesamientoDatosTask (void *vParameter){
 
 }
 
+/** @fn transmitirDatosTask (void *vParameter)
+ * 	@brief Tarea que transmite los datos via bluetooth
+ * @param[in] vParameter puntero tipo void 
+ */
 void transmitirDatosTask (void *vParameter){
 	while (true) {
 		if (iniciar){
@@ -279,8 +434,8 @@ void transmitirDatosTask (void *vParameter){
 				sprintf (msg, "*fTemperatura promedio normal");
 				BleSendString(msg);
 			}
-			if (estresHRV){
-				sprintf (msg, "*pPareces estar estresado, realiza esto:");  //23 carac
+			if (estresALTO){
+				sprintf (msg, "*pALTO NIVEL DE ESTRES realiza esto:");  //23 carac
 				BleSendString(msg);
 				sprintf (msg, "*sInhalar 4 segundos");
 				BleSendString(msg);
@@ -291,6 +446,18 @@ void transmitirDatosTask (void *vParameter){
 				sprintf (msg, "*qRealizarlo por 5 minutos");
 				BleSendString(msg);
 			}
+			else if (estresMEDIO){
+				sprintf (msg, "*pMEDIO NIVEL DE ESTRES igual realiza esto:");  //23 carac
+				BleSendString(msg);
+				sprintf (msg, "*sInhalar 4 segundos");
+				BleSendString(msg);
+				sprintf (msg, "*tMantener 4 segundos");
+				BleSendString(msg);
+				sprintf (msg, "*cExhalar. Esperar 4 segundos y repetir");
+				BleSendString(msg);
+				sprintf (msg, "*qRealizarlo por 5 minutos");
+				BleSendString(msg);
+			} 
 			else {
 				sprintf (msg, "*pNo estas bajo estres agudo");
 				BleSendString(msg);
