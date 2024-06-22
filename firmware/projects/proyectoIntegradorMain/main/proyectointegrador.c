@@ -57,7 +57,7 @@
 /** @def DURACION
  * @brief tiempo en segundos que dura la medicion del sensor MAX30102
 */
-#define DURACION 20
+#define DURACION 15
 
 /** @def SAMPLE_FREQ
  * @brief frecuencia de muestreo de sensor MAX30102
@@ -69,15 +69,10 @@
 */
 #define BUFFER_SIZE (SAMPLE_FREQ * DURACION) 
 
-/** @def CONFIG_TIMER1_US
- * @brief Tiempo en microsegundos que se da el timer1
-*/
-#define CONFIG_TIMER1_US 1000000  //timer cada un segundo usado para temperatura
-
 /** @def CONFIG_PROCES_DELAY
  * @brief tiempo en milisegundos de delay luego del procesamiento de datos
 */
-#define CONFIG_PROCES_DELAY 500 // es en mili segundos, esto equivale a 0.5s
+#define CONFIG_PROCES_DELAY 10000 
 
 /** @def CONFIG_BLINK_PERIOD
  * @brief Periodo de parpadeo del led
@@ -87,7 +82,17 @@
 /** @def CONFIG_MAX_DELAY
  * @brief Delay luego del uso del sensor MAX30102
 */
-#define CONFIG_MAX_DELAY 4000  
+#define CONFIG_MAX_DELAY 5000  
+
+/** @def CONFIG_LM_DELAY	
+ * @brief Delay en la tarea de medir temperatura 
+ */
+#define CONFIG_LM_DELAY 1000 
+
+/** @def CONFIG_ENV_DELAY
+ * @brief Delay luego de transmitir datos
+ */
+#define CONFIG_ENV_DELAY 10000
 
 /** @def LED_BT
  * @brief Led que va a parpadear cuando se conecte el bluetooth.
@@ -179,13 +184,22 @@ int8_t validHeartRate ; //indicator to show if the heart rate calculation is val
 */
 uint8_t entradaBle ;
 
+/** @var terminoSensor 
+ * 	@brief Bandera que indica si termino de medir el sensor MAX30102
+ */
+bool terminoSensor = false;
+
+/** @var terminoSensorLM
+ * 	@brief Bandera que indica si termino de medir el sensor LM35
+ */
+bool terminoSensorLM = false;
+
 /*==================[internal data definition]===============================*/
 
 TaskHandle_t utilizarSensor_task_handle = NULL;
 TaskHandle_t medirTemperatura_task_handle = NULL;
 TaskHandle_t procesamientoDatos_task_handle = NULL;
 TaskHandle_t transmitirDatos_task_handle = NULL;
-
 
 /*==================[internal functions declaration]=========================*/
 
@@ -196,13 +210,6 @@ static void cambia_iniciar (){
 	iniciar =! iniciar;
 }
 
-/** @fn void FuncTimer1 (void *param)
-* @brief Funcion que cambia la bandera iniciar.
-* @param[in] param puntero tipo void 
-*/
-void FuncTimer1 (void *param){
-	vTaskNotifyGiveFromISR (medirTemperatura_task_handle, pdFALSE);
-}
 
 /** @fn void read_ble ( uint8_t *data, uint8_t length)
 * @brief Funcion que permite lectura de datos transmitidos desde otro dispositivo via bluetooth.
@@ -223,6 +230,7 @@ void utilizarSensorTask (void *vParameter){
 	while (true){
 		if (iniciar) {
 		uint32_t sample_count = 0;
+			//printf ("tomando muestras\n");
 			while (sample_count < BUFFER_SIZE){
 
 				while (MAX3010X_available() == false)
@@ -233,6 +241,8 @@ void utilizarSensorTask (void *vParameter){
 
 				sample_count++;
 			}
+			terminoSensor = true;
+			//printf ("termina muestras\n");
 			vTaskDelay (CONFIG_MAX_DELAY / portTICK_PERIOD_MS);
 		}
 	}
@@ -249,7 +259,6 @@ void calculointervalos (uint32_t *pun_ir_buffer, int32_t n_ir_buffer_length, int
 
 	uint32_t un_ir_mean;  
 	int32_t k;
-	//int32_t i, n_exact_ir_valley_locs_count;
 	int32_t n_th1, n_npks;
 	int32_t an_ir_valley_locs[40] ;
 	int32_t n_peak_interval_sum;
@@ -310,11 +319,6 @@ void calculointervalos (uint32_t *pun_ir_buffer, int32_t n_ir_buffer_length, int
 void calculoVariabilidad (void){
 	// se usa la desviacion estandar de los intervalos RR (SDNN)
 	
-	//calculointervalos(irBuffer, bufferLength, &heartRate, &validHeartRate);
-		//if (peak_count < 2) // No suficiente datos
-		//return -1;
-		//; 
-
   	float mean = 0.0;
   	for (int i = 0; i < peak_count; i++) {
     	mean += peak_intervals[i];
@@ -326,26 +330,30 @@ void calculoVariabilidad (void){
 
 	HRV /= (peak_count - 1);
 	HRV = sqrt(HRV);
-	
+	printf ("HRV= %f \n", HRV);
 }
 
 /** @fn medirTemperaturaTask (void *vParameter)
  *  @brief Tarea que realiza la medicion de la temperatura con el sensor LM35
  * @param[in] vParameter Puntero tipo void
  */
+
 void medirTemperaturaTask (void *vParameter){
 	while (true){
 		if (iniciar){
-		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-
+		//ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+		
 		AnalogInputReadSingle (CH1, &temp_inst);  //lectura temperatura instantanea.
 		temperaturaVect[temp_count] = temp_inst;
-
+		printf ("Temperatura inst= %u\n", temp_inst);
+		
 		if (temp_count == 24 || temp_count > 24){
+			terminoSensorLM = true;
 			temp_count = 0;
 		}
 		else ++temp_count;
 
+		vTaskDelay (CONFIG_LM_DELAY / portTICK_PERIOD_MS);
 		}
 		
 	}
@@ -361,7 +369,7 @@ void calculoTemperaturaProm (int8_t *vecTemp){
 	int elementosVector = 24;
 	int suma = 0;
 	int diferenciaaux = 0;
-
+	printf ("entra en calculo temp");
 	for (int i = 1; i < elementosVector ; i++){
 		diferenciaaux = vecTemp[i] - vecTemp[i-1];
 		if (diferenciaaux > diferenciaTemp){
@@ -373,8 +381,11 @@ void calculoTemperaturaProm (int8_t *vecTemp){
 		suma += vecTemp[i];
 	}
 	//temperaturaProm = temperaturaProm 
-	temperaturaProm = temperaturaProm / 100; 
+	//temperaturaProm = temperaturaProm / 100; 
 	temperaturaProm = suma/elementosVector;
+	temperaturaProm = temperaturaProm / 10;
+
+	printf ("temperaturaProm = %f \n", temperaturaProm);
 }
 
 /** @fn procesamientoDatosTask(void *vParameter)
@@ -385,12 +396,14 @@ void calculoTemperaturaProm (int8_t *vecTemp){
 void procesamientoDatosTask (void *vParameter){
 	while(true){
 		if (iniciar){
-			calculointervalos(irBuffer, bufferLength, &heartRate, &validHeartRate);
-			calculoVariabilidad();
-			calculoTemperaturaProm (temperaturaVect);
-
-			if (HRV < 25){
+			//printf ("procesamiento datos \n");
+			if (terminoSensor && terminoSensorLM){
+				calculointervalos(irBuffer, bufferLength, &heartRate, &validHeartRate);
+				calculoVariabilidad();
+				calculoTemperaturaProm (temperaturaVect);
+				if (HRV < 25){
 				estresALTO = true;
+				//printf ("estresalto\n");
 			}
 			else if (HRV > 25 && HRV < 50) {
 				estresMEDIO = true;
@@ -400,11 +413,13 @@ void procesamientoDatosTask (void *vParameter){
 				estresMEDIO = false;
 			}
 
-			if (diferenciaTemp > 1500){  //1500 equivale a 1,5°c
+			if (diferenciaTemp > 15){  //1500 equivale a 1,5°c
 				fiebre = true;
 			}
 			else fiebre = false;
-		
+			}
+			printf ("termina caacl");
+				
 		}
 		vTaskDelay (CONFIG_PROCES_DELAY / portTICK_PERIOD_MS);
 	}
@@ -415,13 +430,10 @@ void procesamientoDatosTask (void *vParameter){
  * 	@brief Tarea que transmite los datos via bluetooth
  * @param[in] vParameter puntero tipo void 
  */
+
 void transmitirDatosTask (void *vParameter){
 	while (true) {
 		if (iniciar){
-			/*	logica para que se envien los datos via bluetooth
-			deberia enviar mensajes de si necesita ejercicios de respiracion
-			y el nivel de temperatura (temperaturaprom)
-			*/
 			char msg[48];
 			sprintf (msg, "*T%.1f", temperaturaProm);  //envio un valor despues de la coma
 			if (fiebre){
@@ -464,7 +476,7 @@ void transmitirDatosTask (void *vParameter){
 				sprintf (msg, "*sPodes seguir en lo tuyo..");
 				BleSendString(msg);
 			}
-			vTaskDelay (CONFIG_PROCES_DELAY / portTICK_PERIOD_MS);
+			vTaskDelay (CONFIG_ENV_DELAY / portTICK_PERIOD_MS);
 		}
 
 	}
@@ -477,28 +489,24 @@ void app_main(void){
 	ble_config_t ble_configuration = {
 		"ESP_EDU_FACUM",
 		read_ble
-	};
+	}; 
 	MAX3010X_begin();
 	MAX3010X_setup(30, 1, 2, SAMPLE_FREQ, 69, 4096);
-	SwitchesInit();
 	LedsInit();
 	BleInit(&ble_configuration);
-
-	timer_config_t timer1 = {
-		.timer = TIMER_A,
-		.period = CONFIG_TIMER1_US,
-		.func_p = FuncTimer1,
-		.param_p = NULL
+	
+	analog_input_config_t adc_config = {
+		.input = CH1,
+		.mode = ADC_SINGLE,
+		.func_p = NULL,
+		.param_p = NULL,
 	};
-	TimerInit (&timer1);
+	AnalogInputInit (&adc_config);
 
-	xTaskCreate (&utilizarSensorTask, "SENSORMAX", 512, NULL, 5, &utilizarSensor_task_handle);
-	xTaskCreate (&medirTemperaturaTask, "TEMP", 512, NULL, 5, &medirTemperatura_task_handle);
-	xTaskCreate (&procesamientoDatosTask, "DATOS", 512, NULL, 5, &procesamientoDatos_task_handle);
+	xTaskCreate (&utilizarSensorTask, "SENSORMAX", 4096, NULL, 5, &utilizarSensor_task_handle);
+	xTaskCreate (&medirTemperaturaTask, "TEMP", 4096, NULL, 5, &medirTemperatura_task_handle);
+	xTaskCreate (&procesamientoDatosTask, "DATOS", 4096, NULL, 5, &procesamientoDatos_task_handle);
 	xTaskCreate (&transmitirDatosTask, "ENVIO", 512, NULL, 5, &transmitirDatos_task_handle);
-
-
-	TimerStart (timer1.timer);
 
 	while(1){
         vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
@@ -514,7 +522,6 @@ void app_main(void){
             break;
         }
     }
-
-	SwitchActivInt (SWITCH_1, &cambia_iniciar, NULL); //esto en realidad hacerlo con el bluetooth
+	
 }
 /*==================[end of file]============================================*/
