@@ -10,14 +10,21 @@
  * se realizarán calculos sobre temperatura promedio y diferencias de temperatura entre cada elemento.
  * Luego, con estos parametros mediante comunicacion Bluetooth, se informará la temperatura promedio 
  * y una posible fiebre; también se informará si la persona esta bajo estrés o no, indicando
- * ejercicios de respiración para disminuirlo.
+ * ejercicios de respiración para disminuirlo. 
+ *  NO funcionó conexion bluetooth.
  * 	
  *
  * @section hardConn Hardware Connection
  *
  * |    Peripheral  |   ESP32   	|
  * |:--------------:|:--------------|
- * | 	PIN_X	 	| 	GPIO_X		|
+ * | 	LM35 Vin	| 		3V3		|
+ * | 	LM35 GND	| 		GND		|
+ * | 	LM35 OUT	| 		CH1		|	
+ * | MAX30102 Vin	| 		3V3		|
+ * | MAX30102 Vin	| 		GND		|
+ * | MAX30102 SCL	| 		SCL		|
+ * | MAX30102 SDA	| 		SDA		|
  *
  *
  * @section changelog Changelog
@@ -217,7 +224,9 @@ static void cambia_iniciar (){
 * @param[in] length Longitud del array de datos recibidos
 */
 void read_ble ( uint8_t *data, uint8_t length){ 
-	if (data[0] == 'A' || data[0] == 'a'){
+	printf ("dato que recibo: %u", data[0]);
+	if (data[0] == 'A'){
+		
 		cambia_iniciar();
 	}
 }
@@ -230,7 +239,7 @@ void utilizarSensorTask (void *vParameter){
 	while (true){
 		if (iniciar) {
 		uint32_t sample_count = 0;
-			//printf ("tomando muestras\n");
+			printf ("tomando muestras\n");
 			while (sample_count < BUFFER_SIZE){
 
 				while (MAX3010X_available() == false)
@@ -242,7 +251,7 @@ void utilizarSensorTask (void *vParameter){
 				sample_count++;
 			}
 			terminoSensor = true;
-			//printf ("termina muestras\n");
+			printf ("termina muestras\n");
 			vTaskDelay (CONFIG_MAX_DELAY / portTICK_PERIOD_MS);
 		}
 	}
@@ -347,11 +356,12 @@ void medirTemperaturaTask (void *vParameter){
 		temperaturaVect[temp_count] = temp_inst;
 		printf ("Temperatura inst= %u\n", temp_inst);
 		
-		if (temp_count == 24 || temp_count > 24){
+		temp_count++;
+		if (temp_count == 5 || temp_count > 24){
 			terminoSensorLM = true;
 			temp_count = 0;
 		}
-		else ++temp_count;
+		
 
 		vTaskDelay (CONFIG_LM_DELAY / portTICK_PERIOD_MS);
 		}
@@ -370,6 +380,11 @@ void calculoTemperaturaProm (int8_t *vecTemp){
 	int suma = 0;
 	int diferenciaaux = 0;
 	printf ("entra en calculo temp");
+	
+	for (int i = 0; i < elementosVector ; i++){
+		suma += vecTemp[i];
+	}
+
 	for (int i = 1; i < elementosVector ; i++){
 		diferenciaaux = vecTemp[i] - vecTemp[i-1];
 		if (diferenciaaux > diferenciaTemp){
@@ -377,9 +392,7 @@ void calculoTemperaturaProm (int8_t *vecTemp){
 		}
 	}
 
-	for (int i = 0; i < elementosVector ; i++){
-		suma += vecTemp[i];
-	}
+	
 	//temperaturaProm = temperaturaProm 
 	//temperaturaProm = temperaturaProm / 100; 
 	temperaturaProm = suma/elementosVector;
@@ -403,7 +416,7 @@ void procesamientoDatosTask (void *vParameter){
 				calculoTemperaturaProm (temperaturaVect);
 				if (HRV < 25){
 				estresALTO = true;
-				//printf ("estresalto\n");
+				printf ("estresalto\n");
 			}
 			else if (HRV > 25 && HRV < 50) {
 				estresMEDIO = true;
@@ -417,8 +430,54 @@ void procesamientoDatosTask (void *vParameter){
 				fiebre = true;
 			}
 			else fiebre = false;
+
+			/* 				PRUEBAS REALIZADAS  
+			//char msg[48];
+			//sprintf (msg, "*lmidiendo..");
+			printf ("*T%.1f", temperaturaProm);  //envio un valor despues de la coma
+			if (fiebre){
+				printf ("*fTemperatura promedio elevada");
+				
+				printf ( "*gPuede ser que hayas tenido fiebre");
+				
 			}
-			printf ("termina caacl");
+			else {
+				printf ( "*fTemperatura promedio normal");
+				
+			}
+			if (estresALTO){
+				printf ("ALTO NIVEL DE ESTRES realiza esto: \n");  //23 carac
+				
+				printf ( "Inhalar 4 segundos\n");
+				
+				printf ( "Mantener 4 segundos\n");
+				
+				printf ( "Exhalar. Esperar 4 segundos y repetir\n");
+				
+				printf ( "Realizarlo por 5 minutos\n");
+				
+			}
+			else if (estresMEDIO){
+				printf ("MEDIO NIVEL DE ESTRES igual realiza esto:\n");  //23 carac
+				
+				printf ("Inhalar 4 segundos\n");
+				
+				printf ( "Mantener 4 segundos\n");
+				
+				printf ( "Exhalar. Esperar 4 segundos y repetir\n");
+				
+				printf ( "Realizarlo por 5 minutos\n");
+				
+			} 
+			else {
+				printf ("No estas bajo estres agudo\n");
+				
+				printf ( "Podes seguir en lo tuyo..\n");
+				
+			}
+			
+			*/
+			}
 				
 		}
 		vTaskDelay (CONFIG_PROCES_DELAY / portTICK_PERIOD_MS);
@@ -435,6 +494,7 @@ void transmitirDatosTask (void *vParameter){
 	while (true) {
 		if (iniciar){
 			char msg[48];
+			sprintf (msg, "*lmidiendo..");
 			sprintf (msg, "*T%.1f", temperaturaProm);  //envio un valor despues de la coma
 			if (fiebre){
 				sprintf (msg, "*fTemperatura promedio elevada");
@@ -489,11 +549,12 @@ void app_main(void){
 	ble_config_t ble_configuration = {
 		"ESP_EDU_FACUM",
 		read_ble
-	}; 
+	};
 	MAX3010X_begin();
 	MAX3010X_setup(30, 1, 2, SAMPLE_FREQ, 69, 4096);
 	LedsInit();
 	BleInit(&ble_configuration);
+	SwitchesInit();
 	
 	analog_input_config_t adc_config = {
 		.input = CH1,
@@ -502,6 +563,7 @@ void app_main(void){
 		.param_p = NULL,
 	};
 	AnalogInputInit (&adc_config);
+	SwitchActivInt(SWITCH_1, &cambia_iniciar, NULL);
 
 	xTaskCreate (&utilizarSensorTask, "SENSORMAX", 4096, NULL, 5, &utilizarSensor_task_handle);
 	xTaskCreate (&medirTemperaturaTask, "TEMP", 4096, NULL, 5, &medirTemperatura_task_handle);

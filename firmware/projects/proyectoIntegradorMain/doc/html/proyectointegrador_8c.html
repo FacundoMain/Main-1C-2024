@@ -1,0 +1,1205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>proyectoIntegradorMain: Referencia del archivo C:/Repositorios/Main-1C-2024/firmware/projects/proyectoIntegradorMain/main/proyectointegrador.c</title>
+<link rel="icon" href="icon.ico" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="fiuner.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">proyectoIntegradorMain<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('proyectointegrador_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">defines</a> &#124;
+<a href="#func-members">Funciones</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Referencia del archivo proyectointegrador.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
+<code>#include &quot;freertos/task.h&quot;</code><br />
+<code>#include &quot;max3010x.h&quot;</code><br />
+<code>#include &quot;spo2_algorithm.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="switch_8h_source.html">switch.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="timer__mcu_8h_source.html">timer_mcu.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="analog__io__mcu_8h_source.html">analog_io_mcu.h</a>&quot;</code><br />
+<code>#include &quot;ble_mcu.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="led_8h_source.html">led.h</a>&quot;</code><br />
+</div>
+<p><a href="proyectointegrador_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a13bd78a709c65b72b126918ae8a28597" id="r_a13bd78a709c65b72b126918ae8a28597"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13bd78a709c65b72b126918ae8a28597">MAX_PEAKS</a>&#160;&#160;&#160;40</td></tr>
+<tr class="memdesc:a13bd78a709c65b72b126918ae8a28597"><td class="mdescLeft">&#160;</td><td class="mdescRight">indica el tamaño del vector de picos  <br /></td></tr>
+<tr class="separator:a13bd78a709c65b72b126918ae8a28597"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fa2241016a8c2aa7084ce27e43d41df" id="r_a9fa2241016a8c2aa7084ce27e43d41df"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fa2241016a8c2aa7084ce27e43d41df">DURACION</a>&#160;&#160;&#160;15</td></tr>
+<tr class="memdesc:a9fa2241016a8c2aa7084ce27e43d41df"><td class="mdescLeft">&#160;</td><td class="mdescRight">tiempo en segundos que dura la medicion del sensor MAX30102  <br /></td></tr>
+<tr class="separator:a9fa2241016a8c2aa7084ce27e43d41df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9401e43a8c86acafb31c8e2709baefa1" id="r_a9401e43a8c86acafb31c8e2709baefa1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9401e43a8c86acafb31c8e2709baefa1">SAMPLE_FREQ</a>&#160;&#160;&#160;25</td></tr>
+<tr class="memdesc:a9401e43a8c86acafb31c8e2709baefa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">frecuencia de muestreo de sensor MAX30102  <br /></td></tr>
+<tr class="separator:a9401e43a8c86acafb31c8e2709baefa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b20d41d6252e9871430c242cb1a56e7" id="r_a6b20d41d6252e9871430c242cb1a56e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>&#160;&#160;&#160;(<a class="el" href="#a9401e43a8c86acafb31c8e2709baefa1">SAMPLE_FREQ</a> * <a class="el" href="#a9fa2241016a8c2aa7084ce27e43d41df">DURACION</a>)</td></tr>
+<tr class="memdesc:a6b20d41d6252e9871430c242cb1a56e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">indica la cantidad de muestras que voy a tener  <br /></td></tr>
+<tr class="separator:a6b20d41d6252e9871430c242cb1a56e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06c08c8efcefcdaea2783b60124f7b7f" id="r_a06c08c8efcefcdaea2783b60124f7b7f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a06c08c8efcefcdaea2783b60124f7b7f">CONFIG_PROCES_DELAY</a>&#160;&#160;&#160;10000</td></tr>
+<tr class="memdesc:a06c08c8efcefcdaea2783b60124f7b7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">tiempo en milisegundos de delay luego del procesamiento de datos  <br /></td></tr>
+<tr class="separator:a06c08c8efcefcdaea2783b60124f7b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3df1b4cad09974bfc68858fad7cdc054" id="r_a3df1b4cad09974bfc68858fad7cdc054"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3df1b4cad09974bfc68858fad7cdc054">CONFIG_BLINK_PERIOD</a>&#160;&#160;&#160;500</td></tr>
+<tr class="memdesc:a3df1b4cad09974bfc68858fad7cdc054"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodo de parpadeo del led.  <br /></td></tr>
+<tr class="separator:a3df1b4cad09974bfc68858fad7cdc054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b981b3c0207b01705d97220e29927de" id="r_a6b981b3c0207b01705d97220e29927de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b981b3c0207b01705d97220e29927de">CONFIG_MAX_DELAY</a>&#160;&#160;&#160;5000</td></tr>
+<tr class="memdesc:a6b981b3c0207b01705d97220e29927de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay luego del uso del sensor MAX30102.  <br /></td></tr>
+<tr class="separator:a6b981b3c0207b01705d97220e29927de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73f28a947deda320e62ce47cdf9dbbb1" id="r_a73f28a947deda320e62ce47cdf9dbbb1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73f28a947deda320e62ce47cdf9dbbb1">CONFIG_LM_DELAY</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="separator:a73f28a947deda320e62ce47cdf9dbbb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78b316871a2e93d548537b26f57fc040" id="r_a78b316871a2e93d548537b26f57fc040"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78b316871a2e93d548537b26f57fc040">CONFIG_ENV_DELAY</a>&#160;&#160;&#160;10000</td></tr>
+<tr class="memdesc:a78b316871a2e93d548537b26f57fc040"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay luego de transmitir datos.  <br /></td></tr>
+<tr class="separator:a78b316871a2e93d548537b26f57fc040"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a3ccd8a43b5c5e8a4d573780da1fd4a" id="r_a7a3ccd8a43b5c5e8a4d573780da1fd4a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a3ccd8a43b5c5e8a4d573780da1fd4a">LED_BT</a>&#160;&#160;&#160;<a class="el" href="group___l_e_d.html#ggab6831a7d06c0a2bc69f9b024f6445a80a11a9adb9054de1fe01d6a6750075f57b">LED_1</a></td></tr>
+<tr class="memdesc:a7a3ccd8a43b5c5e8a4d573780da1fd4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Led que va a parpadear cuando se conecte el bluetooth.  <br /></td></tr>
+<tr class="separator:a7a3ccd8a43b5c5e8a4d573780da1fd4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:ab9aa995e7dbc697650b839ca4eedb200" id="r_ab9aa995e7dbc697650b839ca4eedb200"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9aa995e7dbc697650b839ca4eedb200">cambia_iniciar</a> ()</td></tr>
+<tr class="separator:ab9aa995e7dbc697650b839ca4eedb200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a88701593dbdda00123c98c2f90828e" id="r_a8a88701593dbdda00123c98c2f90828e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a88701593dbdda00123c98c2f90828e">read_ble</a> (uint8_t *data, uint8_t length)</td></tr>
+<tr class="memdesc:a8a88701593dbdda00123c98c2f90828e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcion que permite lectura de datos transmitidos desde otro dispositivo via bluetooth.  <br /></td></tr>
+<tr class="separator:a8a88701593dbdda00123c98c2f90828e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2a41e145cf825e209f0204d6b91f2e6" id="r_ab2a41e145cf825e209f0204d6b91f2e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2a41e145cf825e209f0204d6b91f2e6">utilizarSensorTask</a> (void *vParameter)</td></tr>
+<tr class="memdesc:ab2a41e145cf825e209f0204d6b91f2e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tarea que realiza uso de sensorMAX30102.  <br /></td></tr>
+<tr class="separator:ab2a41e145cf825e209f0204d6b91f2e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a975ce54611b49c9f5e3835cbf3e7fb3c" id="r_a975ce54611b49c9f5e3835cbf3e7fb3c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a975ce54611b49c9f5e3835cbf3e7fb3c">calculointervalos</a> (uint32_t *pun_ir_buffer, int32_t n_ir_buffer_length, int32_t *pn_heart_rate, int8_t *pch_hr_valid)</td></tr>
+<tr class="separator:a975ce54611b49c9f5e3835cbf3e7fb3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af38197cbf34255eb7e6bcf090f5fd736" id="r_af38197cbf34255eb7e6bcf090f5fd736"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af38197cbf34255eb7e6bcf090f5fd736">calculoVariabilidad</a> (void)</td></tr>
+<tr class="memdesc:af38197cbf34255eb7e6bcf090f5fd736"><td class="mdescLeft">&#160;</td><td class="mdescRight">Funcion que calcula la variabilidad de la frecuencia cardíaca.  <br /></td></tr>
+<tr class="separator:af38197cbf34255eb7e6bcf090f5fd736"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e18f8819fa632d36b6b812c3b4d248f" id="r_a9e18f8819fa632d36b6b812c3b4d248f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e18f8819fa632d36b6b812c3b4d248f">medirTemperaturaTask</a> (void *vParameter)</td></tr>
+<tr class="memdesc:a9e18f8819fa632d36b6b812c3b4d248f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tarea que realiza la medicion de la temperatura con el sensor LM35.  <br /></td></tr>
+<tr class="separator:a9e18f8819fa632d36b6b812c3b4d248f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50f646684903cb52eea77190c2e26aef" id="r_a50f646684903cb52eea77190c2e26aef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50f646684903cb52eea77190c2e26aef">calculoTemperaturaProm</a> (int8_t *vecTemp)</td></tr>
+<tr class="separator:a50f646684903cb52eea77190c2e26aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2875288f460e0552bf45c72d8b6856d7" id="r_a2875288f460e0552bf45c72d8b6856d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2875288f460e0552bf45c72d8b6856d7">procesamientoDatosTask</a> (void *vParameter)</td></tr>
+<tr class="memdesc:a2875288f460e0552bf45c72d8b6856d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tarea que realiza el procesamiento de los datos de temperatura y de la señal ppg.  <br /></td></tr>
+<tr class="separator:a2875288f460e0552bf45c72d8b6856d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c679ea0123e6d6559cfc03e5ccbd621" id="r_a8c679ea0123e6d6559cfc03e5ccbd621"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c679ea0123e6d6559cfc03e5ccbd621">transmitirDatosTask</a> (void *vParameter)</td></tr>
+<tr class="memdesc:a8c679ea0123e6d6559cfc03e5ccbd621"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tarea que transmite los datos via bluetooth.  <br /></td></tr>
+<tr class="separator:a8c679ea0123e6d6559cfc03e5ccbd621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (void)</td></tr>
+<tr class="separator:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a22855fa050bd640924b4ae9e218aefb1" id="r_a22855fa050bd640924b4ae9e218aefb1"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22855fa050bd640924b4ae9e218aefb1">HRV</a> = 0.0</td></tr>
+<tr class="memdesc:a22855fa050bd640924b4ae9e218aefb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable que indica en milisegundos la variabilidad de la frecuencia cardíaca.  <br /></td></tr>
+<tr class="separator:a22855fa050bd640924b4ae9e218aefb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fa4e39c46b10f08e1b66dec5cdf1027" id="r_a9fa4e39c46b10f08e1b66dec5cdf1027"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9fa4e39c46b10f08e1b66dec5cdf1027">temperaturaProm</a> = 0.0</td></tr>
+<tr class="separator:a9fa4e39c46b10f08e1b66dec5cdf1027"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a2f37d82907cc80a346c6820a8f6e9d" id="r_a8a2f37d82907cc80a346c6820a8f6e9d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a2f37d82907cc80a346c6820a8f6e9d">diferenciaTemp</a> = 0</td></tr>
+<tr class="memdesc:a8a2f37d82907cc80a346c6820a8f6e9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">indica la diferencia entre dos temperaturas sucesivas  <br /></td></tr>
+<tr class="separator:a8a2f37d82907cc80a346c6820a8f6e9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90c204b537d0dab231e8c7382d407091" id="r_a90c204b537d0dab231e8c7382d407091"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90c204b537d0dab231e8c7382d407091">temperaturaVect</a> [24]</td></tr>
+<tr class="separator:a90c204b537d0dab231e8c7382d407091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e666d37e4dc4757124734d2685691ac" id="r_a0e666d37e4dc4757124734d2685691ac"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e666d37e4dc4757124734d2685691ac">temp_inst</a> = 0</td></tr>
+<tr class="memdesc:a0e666d37e4dc4757124734d2685691ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">valor de temperatura instantanea que mido con el sensor  <br /></td></tr>
+<tr class="separator:a0e666d37e4dc4757124734d2685691ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99c731cfa121496aacea00eda6f4a776" id="r_a99c731cfa121496aacea00eda6f4a776"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99c731cfa121496aacea00eda6f4a776">temp_count</a> = 0</td></tr>
+<tr class="memdesc:a99c731cfa121496aacea00eda6f4a776"><td class="mdescLeft">&#160;</td><td class="mdescRight">contador utilizado para calculos en vector temperatura.  <br /></td></tr>
+<tr class="separator:a99c731cfa121496aacea00eda6f4a776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaed82c5a432b67222a2440bb88b191ca" id="r_aaed82c5a432b67222a2440bb88b191ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaed82c5a432b67222a2440bb88b191ca">estresALTO</a> = false</td></tr>
+<tr class="memdesc:aaed82c5a432b67222a2440bb88b191ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">booliano que indica si esta muy estresado  <br /></td></tr>
+<tr class="separator:aaed82c5a432b67222a2440bb88b191ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83e221496d871c962a0f48795aa244b6" id="r_a83e221496d871c962a0f48795aa244b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83e221496d871c962a0f48795aa244b6">estresMEDIO</a> = false</td></tr>
+<tr class="memdesc:a83e221496d871c962a0f48795aa244b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">booliano que indica si esta un poco estresado  <br /></td></tr>
+<tr class="separator:a83e221496d871c962a0f48795aa244b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91d481666b9ff2f0bdbe7734f2bd4b9a" id="r_a91d481666b9ff2f0bdbe7734f2bd4b9a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91d481666b9ff2f0bdbe7734f2bd4b9a">fiebre</a> = false</td></tr>
+<tr class="memdesc:a91d481666b9ff2f0bdbe7734f2bd4b9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">booliano que indica si la persona pudo haber tenido fiebre  <br /></td></tr>
+<tr class="separator:a91d481666b9ff2f0bdbe7734f2bd4b9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c406d0c43430c820c6168d9f8ceb377" id="r_a2c406d0c43430c820c6168d9f8ceb377"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c406d0c43430c820c6168d9f8ceb377">iniciar</a> = false</td></tr>
+<tr class="memdesc:a2c406d0c43430c820c6168d9f8ceb377"><td class="mdescLeft">&#160;</td><td class="mdescRight">bandera que indica si se inicia la medicion  <br /></td></tr>
+<tr class="separator:a2c406d0c43430c820c6168d9f8ceb377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cabfb39fef7ae76e0b4dd67a6e44dd9" id="r_a3cabfb39fef7ae76e0b4dd67a6e44dd9"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cabfb39fef7ae76e0b4dd67a6e44dd9">peak_intervals</a> [<a class="el" href="#a13bd78a709c65b72b126918ae8a28597">MAX_PEAKS</a>]</td></tr>
+<tr class="memdesc:a3cabfb39fef7ae76e0b4dd67a6e44dd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector que almacena los intervalos entre los picos de la señal ppg  <br /></td></tr>
+<tr class="separator:a3cabfb39fef7ae76e0b4dd67a6e44dd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abff7e3cfb15ff138afc66f607bbbdd75" id="r_abff7e3cfb15ff138afc66f607bbbdd75"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abff7e3cfb15ff138afc66f607bbbdd75">peak_count</a> = 0</td></tr>
+<tr class="memdesc:abff7e3cfb15ff138afc66f607bbbdd75"><td class="mdescLeft">&#160;</td><td class="mdescRight">contador de picos de la señal ppg  <br /></td></tr>
+<tr class="separator:abff7e3cfb15ff138afc66f607bbbdd75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c2042e0eca2edd08d3b36193a96d54c" id="r_a6c2042e0eca2edd08d3b36193a96d54c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c2042e0eca2edd08d3b36193a96d54c">irBuffer</a> [<a class="el" href="#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a>]</td></tr>
+<tr class="memdesc:a6c2042e0eca2edd08d3b36193a96d54c"><td class="mdescLeft">&#160;</td><td class="mdescRight">vector donde se almacenan los datos del sensorMAX30102  <br /></td></tr>
+<tr class="separator:a6c2042e0eca2edd08d3b36193a96d54c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acab2c843dd471350c85e0654d008d4d6" id="r_acab2c843dd471350c85e0654d008d4d6"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acab2c843dd471350c85e0654d008d4d6">bufferLength</a> =<a class="el" href="#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a></td></tr>
+<tr class="memdesc:acab2c843dd471350c85e0654d008d4d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">cantidad de muestras  <br /></td></tr>
+<tr class="separator:acab2c843dd471350c85e0654d008d4d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd1c30a930f3e8f8c7517bafaa9b7142" id="r_abd1c30a930f3e8f8c7517bafaa9b7142"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd1c30a930f3e8f8c7517bafaa9b7142">heartRate</a></td></tr>
+<tr class="memdesc:abd1c30a930f3e8f8c7517bafaa9b7142"><td class="mdescLeft">&#160;</td><td class="mdescRight">valor de frecuencia cardiaca  <br /></td></tr>
+<tr class="separator:abd1c30a930f3e8f8c7517bafaa9b7142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeee4a4b528a0c3c1c39eaf8c4f4a1428" id="r_aeee4a4b528a0c3c1c39eaf8c4f4a1428"><td class="memItemLeft" align="right" valign="top">int8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeee4a4b528a0c3c1c39eaf8c4f4a1428">validHeartRate</a></td></tr>
+<tr class="memdesc:aeee4a4b528a0c3c1c39eaf8c4f4a1428"><td class="mdescLeft">&#160;</td><td class="mdescRight">indicador que muestra si el calculo de la frecuencia cardiaca es valido.  <br /></td></tr>
+<tr class="separator:aeee4a4b528a0c3c1c39eaf8c4f4a1428"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64b738884fbe57d0e98e27841b16ab1c" id="r_a64b738884fbe57d0e98e27841b16ab1c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64b738884fbe57d0e98e27841b16ab1c">entradaBle</a></td></tr>
+<tr class="memdesc:a64b738884fbe57d0e98e27841b16ab1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entrada de datos bluetooth.  <br /></td></tr>
+<tr class="separator:a64b738884fbe57d0e98e27841b16ab1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae99100cb32b2f5bb579f94e0c80b2a54" id="r_ae99100cb32b2f5bb579f94e0c80b2a54"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae99100cb32b2f5bb579f94e0c80b2a54">terminoSensor</a> = false</td></tr>
+<tr class="memdesc:ae99100cb32b2f5bb579f94e0c80b2a54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandera que indica si termino de medir el sensor MAX30102.  <br /></td></tr>
+<tr class="separator:ae99100cb32b2f5bb579f94e0c80b2a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c3a469c45913047c22c70968490caa2" id="r_a6c3a469c45913047c22c70968490caa2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c3a469c45913047c22c70968490caa2">terminoSensorLM</a> = false</td></tr>
+<tr class="memdesc:a6c3a469c45913047c22c70968490caa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bandera que indica si termino de medir el sensor LM35.  <br /></td></tr>
+<tr class="separator:a6c3a469c45913047c22c70968490caa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a837bf8d750bc3840bc1f15952801e348" id="r_a837bf8d750bc3840bc1f15952801e348"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a837bf8d750bc3840bc1f15952801e348">utilizarSensor_task_handle</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:a837bf8d750bc3840bc1f15952801e348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f97c2ed892fa37fb8ba5547e55160b5" id="r_a8f97c2ed892fa37fb8ba5547e55160b5"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f97c2ed892fa37fb8ba5547e55160b5">medirTemperatura_task_handle</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:a8f97c2ed892fa37fb8ba5547e55160b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f705b9f1176d0bc801bb9d698969ceb" id="r_a8f705b9f1176d0bc801bb9d698969ceb"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f705b9f1176d0bc801bb9d698969ceb">procesamientoDatos_task_handle</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:a8f705b9f1176d0bc801bb9d698969ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49b308917c5cfbe08ae18386852f840f" id="r_a49b308917c5cfbe08ae18386852f840f"><td class="memItemLeft" align="right" valign="top">TaskHandle_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49b308917c5cfbe08ae18386852f840f">transmitirDatos_task_handle</a> = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td></tr>
+<tr class="separator:a49b308917c5cfbe08ae18386852f840f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de «define»</h2>
+<a id="a6b20d41d6252e9871430c242cb1a56e7" name="a6b20d41d6252e9871430c242cb1a56e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b20d41d6252e9871430c242cb1a56e7">&#9670;&#160;</a></span>BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUFFER_SIZE&#160;&#160;&#160;(<a class="el" href="#a9401e43a8c86acafb31c8e2709baefa1">SAMPLE_FREQ</a> * <a class="el" href="#a9fa2241016a8c2aa7084ce27e43d41df">DURACION</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>indica la cantidad de muestras que voy a tener </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00077">77</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00267">calculointervalos()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00238">utilizarSensorTask()</a>.</p>
+
+</div>
+</div>
+<a id="a3df1b4cad09974bfc68858fad7cdc054" name="a3df1b4cad09974bfc68858fad7cdc054"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3df1b4cad09974bfc68858fad7cdc054">&#9670;&#160;</a></span>CONFIG_BLINK_PERIOD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONFIG_BLINK_PERIOD&#160;&#160;&#160;500</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Periodo de parpadeo del led. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00087">87</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a78b316871a2e93d548537b26f57fc040" name="a78b316871a2e93d548537b26f57fc040"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78b316871a2e93d548537b26f57fc040">&#9670;&#160;</a></span>CONFIG_ENV_DELAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONFIG_ENV_DELAY&#160;&#160;&#160;10000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delay luego de transmitir datos. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00102">102</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00493">transmitirDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="a73f28a947deda320e62ce47cdf9dbbb1" name="a73f28a947deda320e62ce47cdf9dbbb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73f28a947deda320e62ce47cdf9dbbb1">&#9670;&#160;</a></span>CONFIG_LM_DELAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONFIG_LM_DELAY&#160;&#160;&#160;1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00097">97</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00350">medirTemperaturaTask()</a>.</p>
+
+</div>
+</div>
+<a id="a6b981b3c0207b01705d97220e29927de" name="a6b981b3c0207b01705d97220e29927de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b981b3c0207b01705d97220e29927de">&#9670;&#160;</a></span>CONFIG_MAX_DELAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONFIG_MAX_DELAY&#160;&#160;&#160;5000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Delay luego del uso del sensor MAX30102. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00092">92</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00238">utilizarSensorTask()</a>.</p>
+
+</div>
+</div>
+<a id="a06c08c8efcefcdaea2783b60124f7b7f" name="a06c08c8efcefcdaea2783b60124f7b7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a06c08c8efcefcdaea2783b60124f7b7f">&#9670;&#160;</a></span>CONFIG_PROCES_DELAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONFIG_PROCES_DELAY&#160;&#160;&#160;10000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>tiempo en milisegundos de delay luego del procesamiento de datos </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00082">82</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="a9fa2241016a8c2aa7084ce27e43d41df" name="a9fa2241016a8c2aa7084ce27e43d41df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fa2241016a8c2aa7084ce27e43d41df">&#9670;&#160;</a></span>DURACION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DURACION&#160;&#160;&#160;15</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>tiempo en segundos que dura la medicion del sensor MAX30102 </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00067">67</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+</div>
+</div>
+<a id="a7a3ccd8a43b5c5e8a4d573780da1fd4a" name="a7a3ccd8a43b5c5e8a4d573780da1fd4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a3ccd8a43b5c5e8a4d573780da1fd4a">&#9670;&#160;</a></span>LED_BT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LED_BT&#160;&#160;&#160;<a class="el" href="group___l_e_d.html#ggab6831a7d06c0a2bc69f9b024f6445a80a11a9adb9054de1fe01d6a6750075f57b">LED_1</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Led que va a parpadear cuando se conecte el bluetooth. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00107">107</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a13bd78a709c65b72b126918ae8a28597" name="a13bd78a709c65b72b126918ae8a28597"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13bd78a709c65b72b126918ae8a28597">&#9670;&#160;</a></span>MAX_PEAKS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_PEAKS&#160;&#160;&#160;40</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>indica el tamaño del vector de picos </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00062">62</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00267">calculointervalos()</a>.</p>
+
+</div>
+</div>
+<a id="a9401e43a8c86acafb31c8e2709baefa1" name="a9401e43a8c86acafb31c8e2709baefa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9401e43a8c86acafb31c8e2709baefa1">&#9670;&#160;</a></span>SAMPLE_FREQ</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SAMPLE_FREQ&#160;&#160;&#160;25</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>frecuencia de muestreo de sensor MAX30102 </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00072">72</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de funciones</h2>
+<a id="a630544a7f0a2cc40d8a7fefab7e2fe70" name="a630544a7f0a2cc40d8a7fefab7e2fe70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a630544a7f0a2cc40d8a7fefab7e2fe70">&#9670;&#160;</a></span>app_main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void app_main </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00547">547</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="analog__io__mcu_8h_source.html#l00038">ADC_SINGLE</a>, <a class="el" href="analog__io__mcu_8c_source.html#l00045">AnalogInputInit()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00216">cambia_iniciar()</a>, <a class="el" href="analog__io__mcu_8h_source.html#l00032">CH1</a>, <a class="el" href="proyectointegrador_8c_source.html#l00087">CONFIG_BLINK_PERIOD</a>, <a class="el" href="analog__io__mcu_8h_source.html#l00049">analog_input_config_t::input</a>, <a class="el" href="proyectointegrador_8c_source.html#l00107">LED_BT</a>, <a class="el" href="led_8c_source.html#l00065">LedOff()</a>, <a class="el" href="led_8c_source.html#l00046">LedOn()</a>, <a class="el" href="led_8c_source.html#l00031">LedsInit()</a>, <a class="el" href="led_8c_source.html#l00084">LedToggle()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00207">medirTemperatura_task_handle</a>, <a class="el" href="proyectointegrador_8c_source.html#l00350">medirTemperaturaTask()</a>, <a class="el" href="ili9341_8c_source.html#l00042">NULL</a>, <a class="el" href="proyectointegrador_8c_source.html#l00208">procesamientoDatos_task_handle</a>, <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00226">read_ble()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00072">SAMPLE_FREQ</a>, <a class="el" href="switch_8h_source.html#l00032">SWITCH_1</a>, <a class="el" href="switch_8c_source.html#l00047">SwitchActivInt()</a>, <a class="el" href="switch_8c_source.html#l00029">SwitchesInit()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00209">transmitirDatos_task_handle</a>, <a class="el" href="proyectointegrador_8c_source.html#l00493">transmitirDatosTask()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00206">utilizarSensor_task_handle</a> y <a class="el" href="proyectointegrador_8c_source.html#l00238">utilizarSensorTask()</a>.</p>
+
+</div>
+</div>
+<a id="a975ce54611b49c9f5e3835cbf3e7fb3c" name="a975ce54611b49c9f5e3835cbf3e7fb3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a975ce54611b49c9f5e3835cbf3e7fb3c">&#9670;&#160;</a></span>calculointervalos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void calculointervalos </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t *</td>          <td class="paramname"><span class="paramname"><em>pun_ir_buffer</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t</td>          <td class="paramname"><span class="paramname"><em>n_ir_buffer_length</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int32_t *</td>          <td class="paramname"><span class="paramname"><em>pn_heart_rate</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t *</td>          <td class="paramname"><span class="paramname"><em>pch_hr_valid</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00267">267</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="proyectointegrador_8c_source.html#l00077">BUFFER_SIZE</a>, <a class="el" href="proyectointegrador_8c_source.html#l00062">MAX_PEAKS</a>, <a class="el" href="proyectointegrador_8c_source.html#l00167">peak_count</a> y <a class="el" href="proyectointegrador_8c_source.html#l00162">peak_intervals</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="a50f646684903cb52eea77190c2e26aef" name="a50f646684903cb52eea77190c2e26aef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50f646684903cb52eea77190c2e26aef">&#9670;&#160;</a></span>calculoTemperaturaProm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void calculoTemperaturaProm </td>
+          <td>(</td>
+          <td class="paramtype">int8_t *</td>          <td class="paramname"><span class="paramname"><em>vecTemp</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00378">378</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="proyectointegrador_8c_source.html#l00122">diferenciaTemp</a> y <a class="el" href="proyectointegrador_8c_source.html#l00117">temperaturaProm</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="af38197cbf34255eb7e6bcf090f5fd736" name="af38197cbf34255eb7e6bcf090f5fd736"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af38197cbf34255eb7e6bcf090f5fd736">&#9670;&#160;</a></span>calculoVariabilidad()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">calculoVariabilidad </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funcion que calcula la variabilidad de la frecuencia cardíaca. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00328">328</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="proyectointegrador_8c_source.html#l00112">HRV</a>, <a class="el" href="proyectointegrador_8c_source.html#l00167">peak_count</a> y <a class="el" href="proyectointegrador_8c_source.html#l00162">peak_intervals</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="ab9aa995e7dbc697650b839ca4eedb200" name="ab9aa995e7dbc697650b839ca4eedb200"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9aa995e7dbc697650b839ca4eedb200">&#9670;&#160;</a></span>cambia_iniciar()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void cambia_iniciar </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00216">216</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="proyectointegrador_8c_source.html#l00157">iniciar</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00226">read_ble()</a>.</p>
+
+</div>
+</div>
+<a id="a9e18f8819fa632d36b6b812c3b4d248f" name="a9e18f8819fa632d36b6b812c3b4d248f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e18f8819fa632d36b6b812c3b4d248f">&#9670;&#160;</a></span>medirTemperaturaTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">medirTemperaturaTask </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>vParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tarea que realiza la medicion de la temperatura con el sensor LM35. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vParameter</td><td>Puntero tipo void </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00350">350</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="analog__io__mcu_8c_source.html#l00105">AnalogInputReadSingle()</a>, <a class="el" href="analog__io__mcu_8h_source.html#l00032">CH1</a>, <a class="el" href="proyectointegrador_8c_source.html#l00097">CONFIG_LM_DELAY</a>, <a class="el" href="proyectointegrador_8c_source.html#l00157">iniciar</a>, <a class="el" href="proyectointegrador_8c_source.html#l00137">temp_count</a>, <a class="el" href="proyectointegrador_8c_source.html#l00132">temp_inst</a>, <a class="el" href="proyectointegrador_8c_source.html#l00127">temperaturaVect</a> y <a class="el" href="proyectointegrador_8c_source.html#l00202">terminoSensorLM</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a2875288f460e0552bf45c72d8b6856d7" name="a2875288f460e0552bf45c72d8b6856d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2875288f460e0552bf45c72d8b6856d7">&#9670;&#160;</a></span>procesamientoDatosTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">procesamientoDatosTask </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>vParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tarea que realiza el procesamiento de los datos de temperatura y de la señal ppg. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vParameter</td><td>puntero tipo void </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00409">409</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="proyectointegrador_8c_source.html#l00177">bufferLength</a>, <a class="el" href="proyectointegrador_8c_source.html#l00267">calculointervalos()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00378">calculoTemperaturaProm()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00328">calculoVariabilidad()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00082">CONFIG_PROCES_DELAY</a>, <a class="el" href="proyectointegrador_8c_source.html#l00122">diferenciaTemp</a>, <a class="el" href="proyectointegrador_8c_source.html#l00142">estresALTO</a>, <a class="el" href="proyectointegrador_8c_source.html#l00147">estresMEDIO</a>, <a class="el" href="proyectointegrador_8c_source.html#l00152">fiebre</a>, <a class="el" href="proyectointegrador_8c_source.html#l00182">heartRate</a>, <a class="el" href="proyectointegrador_8c_source.html#l00112">HRV</a>, <a class="el" href="proyectointegrador_8c_source.html#l00157">iniciar</a>, <a class="el" href="proyectointegrador_8c_source.html#l00172">irBuffer</a>, <a class="el" href="proyectointegrador_8c_source.html#l00127">temperaturaVect</a>, <a class="el" href="proyectointegrador_8c_source.html#l00197">terminoSensor</a>, <a class="el" href="proyectointegrador_8c_source.html#l00202">terminoSensorLM</a> y <a class="el" href="proyectointegrador_8c_source.html#l00187">validHeartRate</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a8a88701593dbdda00123c98c2f90828e" name="a8a88701593dbdda00123c98c2f90828e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a88701593dbdda00123c98c2f90828e">&#9670;&#160;</a></span>read_ble()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void read_ble </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Funcion que permite lectura de datos transmitidos desde otro dispositivo via bluetooth. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>Puntero a array de datos recibidos </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>Longitud del array de datos recibidos </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00226">226</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="proyectointegrador_8c_source.html#l00216">cambia_iniciar()</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a8c679ea0123e6d6559cfc03e5ccbd621" name="a8c679ea0123e6d6559cfc03e5ccbd621"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c679ea0123e6d6559cfc03e5ccbd621">&#9670;&#160;</a></span>transmitirDatosTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">transmitirDatosTask </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>vParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tarea que transmite los datos via bluetooth. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vParameter</td><td>puntero tipo void </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00493">493</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="proyectointegrador_8c_source.html#l00102">CONFIG_ENV_DELAY</a>, <a class="el" href="proyectointegrador_8c_source.html#l00142">estresALTO</a>, <a class="el" href="proyectointegrador_8c_source.html#l00147">estresMEDIO</a>, <a class="el" href="proyectointegrador_8c_source.html#l00152">fiebre</a>, <a class="el" href="proyectointegrador_8c_source.html#l00157">iniciar</a> y <a class="el" href="proyectointegrador_8c_source.html#l00117">temperaturaProm</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="ab2a41e145cf825e209f0204d6b91f2e6" name="ab2a41e145cf825e209f0204d6b91f2e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2a41e145cf825e209f0204d6b91f2e6">&#9670;&#160;</a></span>utilizarSensorTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">utilizarSensorTask </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>vParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tarea que realiza uso de sensorMAX30102. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vParameter</td><td>puntero tipo void </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00238">238</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="proyectointegrador_8c_source.html#l00077">BUFFER_SIZE</a>, <a class="el" href="proyectointegrador_8c_source.html#l00092">CONFIG_MAX_DELAY</a>, <a class="el" href="proyectointegrador_8c_source.html#l00157">iniciar</a>, <a class="el" href="proyectointegrador_8c_source.html#l00172">irBuffer</a> y <a class="el" href="proyectointegrador_8c_source.html#l00197">terminoSensor</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de variables</h2>
+<a id="acab2c843dd471350c85e0654d008d4d6" name="acab2c843dd471350c85e0654d008d4d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acab2c843dd471350c85e0654d008d4d6">&#9670;&#160;</a></span>bufferLength</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bufferLength =<a class="el" href="#a6b20d41d6252e9871430c242cb1a56e7">BUFFER_SIZE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>cantidad de muestras </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00177">177</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="a8a2f37d82907cc80a346c6820a8f6e9d" name="a8a2f37d82907cc80a346c6820a8f6e9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a2f37d82907cc80a346c6820a8f6e9d">&#9670;&#160;</a></span>diferenciaTemp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">diferenciaTemp = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>indica la diferencia entre dos temperaturas sucesivas </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00122">122</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00378">calculoTemperaturaProm()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="a64b738884fbe57d0e98e27841b16ab1c" name="a64b738884fbe57d0e98e27841b16ab1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64b738884fbe57d0e98e27841b16ab1c">&#9670;&#160;</a></span>entradaBle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">entradaBle</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Entrada de datos bluetooth. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00192">192</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+</div>
+</div>
+<a id="aaed82c5a432b67222a2440bb88b191ca" name="aaed82c5a432b67222a2440bb88b191ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaed82c5a432b67222a2440bb88b191ca">&#9670;&#160;</a></span>estresALTO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">estresALTO = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>booliano que indica si esta muy estresado </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00142">142</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00493">transmitirDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="a83e221496d871c962a0f48795aa244b6" name="a83e221496d871c962a0f48795aa244b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83e221496d871c962a0f48795aa244b6">&#9670;&#160;</a></span>estresMEDIO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">estresMEDIO = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>booliano que indica si esta un poco estresado </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00147">147</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00493">transmitirDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="a91d481666b9ff2f0bdbe7734f2bd4b9a" name="a91d481666b9ff2f0bdbe7734f2bd4b9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91d481666b9ff2f0bdbe7734f2bd4b9a">&#9670;&#160;</a></span>fiebre</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">fiebre = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>booliano que indica si la persona pudo haber tenido fiebre </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00152">152</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00493">transmitirDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="abd1c30a930f3e8f8c7517bafaa9b7142" name="abd1c30a930f3e8f8c7517bafaa9b7142"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd1c30a930f3e8f8c7517bafaa9b7142">&#9670;&#160;</a></span>heartRate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">heartRate</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>valor de frecuencia cardiaca </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00182">182</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="a22855fa050bd640924b4ae9e218aefb1" name="a22855fa050bd640924b4ae9e218aefb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22855fa050bd640924b4ae9e218aefb1">&#9670;&#160;</a></span>HRV</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HRV = 0.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Variable que indica en milisegundos la variabilidad de la frecuencia cardíaca. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00112">112</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00328">calculoVariabilidad()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="a2c406d0c43430c820c6168d9f8ceb377" name="a2c406d0c43430c820c6168d9f8ceb377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c406d0c43430c820c6168d9f8ceb377">&#9670;&#160;</a></span>iniciar</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">iniciar = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>bandera que indica si se inicia la medicion </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00157">157</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00216">cambia_iniciar()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00350">medirTemperaturaTask()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>, <a class="el" href="proyectointegrador_8c_source.html#l00493">transmitirDatosTask()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00238">utilizarSensorTask()</a>.</p>
+
+</div>
+</div>
+<a id="a6c2042e0eca2edd08d3b36193a96d54c" name="a6c2042e0eca2edd08d3b36193a96d54c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c2042e0eca2edd08d3b36193a96d54c">&#9670;&#160;</a></span>irBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">irBuffer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>vector donde se almacenan los datos del sensorMAX30102 </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00172">172</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00238">utilizarSensorTask()</a>.</p>
+
+</div>
+</div>
+<a id="a8f97c2ed892fa37fb8ba5547e55160b5" name="a8f97c2ed892fa37fb8ba5547e55160b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f97c2ed892fa37fb8ba5547e55160b5">&#9670;&#160;</a></span>medirTemperatura_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t medirTemperatura_task_handle = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00207">207</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="abff7e3cfb15ff138afc66f607bbbdd75" name="abff7e3cfb15ff138afc66f607bbbdd75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abff7e3cfb15ff138afc66f607bbbdd75">&#9670;&#160;</a></span>peak_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">peak_count = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>contador de picos de la señal ppg </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00167">167</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00267">calculointervalos()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00328">calculoVariabilidad()</a>.</p>
+
+</div>
+</div>
+<a id="a3cabfb39fef7ae76e0b4dd67a6e44dd9" name="a3cabfb39fef7ae76e0b4dd67a6e44dd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cabfb39fef7ae76e0b4dd67a6e44dd9">&#9670;&#160;</a></span>peak_intervals</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">peak_intervals[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>vector que almacena los intervalos entre los picos de la señal ppg </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00162">162</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00267">calculointervalos()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00328">calculoVariabilidad()</a>.</p>
+
+</div>
+</div>
+<a id="a8f705b9f1176d0bc801bb9d698969ceb" name="a8f705b9f1176d0bc801bb9d698969ceb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f705b9f1176d0bc801bb9d698969ceb">&#9670;&#160;</a></span>procesamientoDatos_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t procesamientoDatos_task_handle = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00208">208</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a99c731cfa121496aacea00eda6f4a776" name="a99c731cfa121496aacea00eda6f4a776"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99c731cfa121496aacea00eda6f4a776">&#9670;&#160;</a></span>temp_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">temp_count = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>contador utilizado para calculos en vector temperatura. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00137">137</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00350">medirTemperaturaTask()</a>.</p>
+
+</div>
+</div>
+<a id="a0e666d37e4dc4757124734d2685691ac" name="a0e666d37e4dc4757124734d2685691ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e666d37e4dc4757124734d2685691ac">&#9670;&#160;</a></span>temp_inst</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">temp_inst = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>valor de temperatura instantanea que mido con el sensor </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00132">132</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00350">medirTemperaturaTask()</a>.</p>
+
+</div>
+</div>
+<a id="a9fa4e39c46b10f08e1b66dec5cdf1027" name="a9fa4e39c46b10f08e1b66dec5cdf1027"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fa4e39c46b10f08e1b66dec5cdf1027">&#9670;&#160;</a></span>temperaturaProm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float temperaturaProm = 0.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00117">117</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00378">calculoTemperaturaProm()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00493">transmitirDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="a90c204b537d0dab231e8c7382d407091" name="a90c204b537d0dab231e8c7382d407091"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90c204b537d0dab231e8c7382d407091">&#9670;&#160;</a></span>temperaturaVect</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int8_t temperaturaVect[24]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00127">127</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00350">medirTemperaturaTask()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="ae99100cb32b2f5bb579f94e0c80b2a54" name="ae99100cb32b2f5bb579f94e0c80b2a54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae99100cb32b2f5bb579f94e0c80b2a54">&#9670;&#160;</a></span>terminoSensor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">terminoSensor = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bandera que indica si termino de medir el sensor MAX30102. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00197">197</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00238">utilizarSensorTask()</a>.</p>
+
+</div>
+</div>
+<a id="a6c3a469c45913047c22c70968490caa2" name="a6c3a469c45913047c22c70968490caa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c3a469c45913047c22c70968490caa2">&#9670;&#160;</a></span>terminoSensorLM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">terminoSensorLM = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bandera que indica si termino de medir el sensor LM35. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00202">202</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00350">medirTemperaturaTask()</a> y <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>.</p>
+
+</div>
+</div>
+<a id="a49b308917c5cfbe08ae18386852f840f" name="a49b308917c5cfbe08ae18386852f840f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49b308917c5cfbe08ae18386852f840f">&#9670;&#160;</a></span>transmitirDatos_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t transmitirDatos_task_handle = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00209">209</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a837bf8d750bc3840bc1f15952801e348" name="a837bf8d750bc3840bc1f15952801e348"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a837bf8d750bc3840bc1f15952801e348">&#9670;&#160;</a></span>utilizarSensor_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t utilizarSensor_task_handle = <a class="el" href="ili9341_8c.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00206">206</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00547">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="aeee4a4b528a0c3c1c39eaf8c4f4a1428" name="aeee4a4b528a0c3c1c39eaf8c4f4a1428"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeee4a4b528a0c3c1c39eaf8c4f4a1428">&#9670;&#160;</a></span>validHeartRate</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">validHeartRate</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>indicador que muestra si el calculo de la frecuencia cardiaca es valido. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="proyectointegrador_8c_source.html#l00187">187</a> del archivo <a class="el" href="proyectointegrador_8c_source.html">proyectointegrador.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="proyectointegrador_8c_source.html#l00409">procesamientoDatosTask()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_cf4b6b7075db4fc8c75ff55d7a1c5c5d.html">Main-1C-2024</a></li><li class="navelem"><a class="el" href="dir_c39fdeda11f452fa020559819f321a3b.html">firmware</a></li><li class="navelem"><a class="el" href="dir_1dd3f5c35aebf45eaf399eb9c871a064.html">projects</a></li><li class="navelem"><a class="el" href="dir_3df47bc995829b421192f94c5815541a.html">proyectoIntegradorMain</a></li><li class="navelem"><a class="el" href="dir_aeec58648ee99e376efbd2b381fbcb1b.html">main</a></li><li class="navelem"><a class="el" href="proyectointegrador_8c.html">proyectointegrador.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>
